@@ -1,0 +1,5 @@
+bank:
+  db:
+    url: jdbc:h2:mem:myBank
+    username: atif
+    password: 123
