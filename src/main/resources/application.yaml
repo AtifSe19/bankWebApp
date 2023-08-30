@@ -14,7 +14,7 @@ spring:
       enabled: true
   jpa:
     hibernate:
-      ddl-auto: none # make this property none if you want to retain your data in the database
+      ddl-auto: update # make this property none if you want to retain your data in the database
 logging:
   level:
     sql: debug

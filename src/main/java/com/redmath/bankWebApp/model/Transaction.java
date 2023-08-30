@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,20 +19,19 @@ import java.util.Date;
 @AllArgsConstructor
 public class Transaction {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
-    private Date date;
+    private LocalDateTime date;
     private String description;
     @NotNull
     private Long amount;
     @NotNull
     private String db_cr_indicator;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "account_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne
+    @JoinColumn(name = "fk_acc_holder_id", nullable = false)
     @JsonIgnore
     private AccountHolder accountHolder;
 }

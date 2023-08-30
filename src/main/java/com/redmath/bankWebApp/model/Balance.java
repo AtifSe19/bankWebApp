@@ -5,9 +5,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import lombok.NonNull;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -16,15 +16,16 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class Balance {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date date;
+    @NonNull
+    private LocalDateTime date;
+    @NonNull
     private Long amount;
+    @NonNull
     private String db_cr_indicator;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "account_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JsonIgnore
     private AccountHolder accountHolder;
 

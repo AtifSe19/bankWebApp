@@ -1,0 +1,13 @@
+{
+    "username": "atif",
+    "email": "atifse19@gmail.com",
+    "password": 123,
+    "roles": "ADMIN",
+    "address": "Badami Bagh, Lahore"
+}
+
+{
+    "amount": 500000,
+    "db_cr_indicator": "db",
+    "account_holder_id": 1
+}
