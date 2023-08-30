@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/accounts")
 public class AccountHolderController {
     private final AccountHolderService accountHolderService;
     @Autowired
@@ -21,8 +21,17 @@ public class AccountHolderController {
     public void createAccountHolder(@RequestBody AccountHolder user){
         accountHolderService.createAccountHolder(user);
     }
+    @DeleteMapping("/delete/{id}")
+    public void deleteAccountHolder(@PathVariable Long id){
+        accountHolderService.deleteAccountHolder(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public AccountHolder updateAccountHolder(@PathVariable Long id, @RequestBody AccountHolder accountHolder){
+        return accountHolderService.updateAccountHolder(id, accountHolder);
+    }
     @GetMapping
-    public List<AccountHolder> getAllAccountHolders(){
+    public List<AccountHolder> viewAccounts(){
         return accountHolderService.getAllAccountHolders();
     }
 
@@ -31,15 +40,6 @@ public class AccountHolderController {
         return accountHolderService.getAccountHolderById(id);
     }
 
-    @PutMapping("/update/{id}")
-    public AccountHolder updateAccountHolder(@PathVariable Long id, @RequestBody AccountHolder accountHolder){
-        return accountHolderService.updateAccountHolder(id, accountHolder);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteAccountHolder(@PathVariable Long id){
-        accountHolderService.deleteAccountHolder(id);
-    }
 
     @PostMapping("/deposit/{username}")
     public void depositCash(@PathVariable String username, @RequestBody Balance balance){

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/balance")
+@RequestMapping("/api/v1/balance")
 public class BalanceController {
 
     private final BalanceService balanceService;
@@ -27,9 +27,14 @@ public class BalanceController {
         balanceService.createBalance(balance);
     }
 
+    @PutMapping("/update/{id}")
+    public Balance updateBalance(@PathVariable Long id, @RequestBody Balance balance){
+        return balanceService.updateBalance(id, balance);
+    }
+
     @GetMapping
-    public List<Balance> getAllBalances(){
-        return balanceService.getAllBalances();
+    public List<Balance> viewBalanceHistory(){
+        return balanceService.viewBalanceHistory();
     }
 
 

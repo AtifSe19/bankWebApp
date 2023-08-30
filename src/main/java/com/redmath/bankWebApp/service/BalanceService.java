@@ -29,7 +29,11 @@ public class BalanceService {
         balanceRepo.save(balance);
     }
 
-    public List<Balance> getAllBalances() {
+    public List<Balance> viewBalanceHistory() {
         return balanceRepo.findAll();
+    }
+
+    public Balance updateBalance(Long id, Balance balance) {
+        return balanceRepo.save(balance);
     }
 }

@@ -36,8 +36,13 @@ public class TransactionService {
 
     }
 
-    public List<Transaction> viewTransactions(String username){
+    public List<Transaction> viewTransactionsHistory(String username){
         return transactionRepo.findTransactionByAccountHolderUsername(username);
     }
 
+    public void withdrawCash(String username) {
+    }
+
+    public void depositCash(String username) {
+    }
 }
