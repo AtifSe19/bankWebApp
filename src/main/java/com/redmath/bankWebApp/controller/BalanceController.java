@@ -4,6 +4,7 @@ import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.service.BalanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +29,11 @@ public class BalanceController {
     @PreAuthorize("hasAuthority('USER')")
     public List<Balance> findBalanceHistoryByUsername(@PathVariable String username){
         return balanceService.findBalanceHistoryByUsername(username);
+    }
+
+    @GetMapping
+    @PreAuthorize("hasAuthority('USER')")
+    public Balance showBalance(Authentication auth){
+        return balanceService.showBalance(auth);
     }
 }

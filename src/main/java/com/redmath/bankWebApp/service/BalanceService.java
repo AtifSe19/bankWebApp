@@ -3,18 +3,16 @@ package com.redmath.bankWebApp.service;
 import com.redmath.bankWebApp.model.AccountHolder;
 import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.repo.BalanceRepo;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static com.fasterxml.jackson.databind.type.LogicalType.DateTime;
-
+@EnableWebSecurity
 @Service
 public class BalanceService {
     private final BalanceRepo balanceRepo;
@@ -67,5 +65,9 @@ public class BalanceService {
         }
         bal.setDb_cr_indicator(transType);
         return balanceRepo.save(bal);
+    }
+
+    public Balance showBalance(Authentication auth) {
+        return balanceRepo.findBalanceByAccountHolderUsername(auth.getName());
     }
 }

@@ -1,6 +1,5 @@
 package com.redmath.bankWebApp.service;
 
-import com.redmath.bankWebApp.controller.AccountHolderController;
 import com.redmath.bankWebApp.model.AccountHolder;
 import com.redmath.bankWebApp.repo.AccountHolderRepo;
 
@@ -13,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.server.authorization.AuthorizationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
