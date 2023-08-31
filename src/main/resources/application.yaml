@@ -1,10 +1,14 @@
 spring:
   application:
     name: bankWebApp
+  security:
+    user:
+      name: ${bank.security.user.name}
+      password: ${bank.security.user.password}
   profiles:
     include:
-      - dev
-#      - dev2
+#      - dev
+      - dev2
   datasource:
     url: ${bank.db.url}
     username: ${bank.db.username}

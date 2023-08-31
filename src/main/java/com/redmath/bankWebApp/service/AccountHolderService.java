@@ -1,27 +1,27 @@
 package com.redmath.bankWebApp.service;
 
 import com.redmath.bankWebApp.controller.AccountHolderController;
-import com.redmath.bankWebApp.controller.BalanceController;
 import com.redmath.bankWebApp.model.AccountHolder;
-import com.redmath.bankWebApp.model.Balance;
-import com.redmath.bankWebApp.model.Transaction;
 import com.redmath.bankWebApp.repo.AccountHolderRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.server.authorization.AuthorizationContext;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class AccountHolderService {
-
+public class AccountHolderService implements UserDetailsService {
     private final AccountHolderRepo accountHolderRepo;
+
     private final BalanceService balanceService;
     @Autowired
     public AccountHolderService
@@ -32,7 +32,28 @@ public class AccountHolderService {
         this.balanceService = balanceService;
     }
 
+    public AccountHolder findByUsername(String username){
+        return accountHolderRepo.findByUsername(username).orElse(null);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        AccountHolder accHolder = findByUsername(username);
+        if(accHolder == null){
+            throw new UsernameNotFoundException(username + "not found");
+        }
+        return new User(accHolder.getUsername(), accHolder.getPassword(), true, true, true, true,
+                AuthorityUtils.commaSeparatedStringToAuthorityList(accHolder.getRoles()));
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+
     public void createAccountHolder(AccountHolder user){
+        user.setPassword(passwordEncoder().encode(user.getPassword()));
         accountHolderRepo.save(user);
         balanceService.createBalance(user, 0L, "CR");
     }

@@ -3,6 +3,7 @@ package com.redmath.bankWebApp.controller;
 import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.service.BalanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,25 +18,15 @@ public class BalanceController {
     public BalanceController(BalanceService balanceService){
         this.balanceService = balanceService;
     }
-    @GetMapping("/{id}")
-    public List<Balance> findBalanceByAccountId(@PathVariable Long id){
-        return balanceService.findBalanceByAccountId(id);
-    }
-
-//    @PostMapping
-//    public void createBalance(@RequestBody Balance balance){
-//        balanceService.createBalance(balance);
+//    @GetMapping("/{username}")
+//    @PreAuthorize("hasRole('USER')")
+//    public List<Balance> findBalanceByUsername(@PathVariable String username){
+//        return balanceService.findBalanceByUsername(username);
 //    }
 
-//    @PutMapping("/update/{id}")
-//    public Balance updateBalance(@PathVariable Long id, @RequestBody Balance balance){
-//        return balanceService.updateBalance(id, balance);
-//    }
-
-    @GetMapping
-    public List<Balance> viewBalanceHistory(){
-        return balanceService.viewBalanceHistory();
+    @GetMapping("/history/{username}")
+    @PreAuthorize("hasAuthority('USER')")
+    public List<Balance> findBalanceHistoryByUsername(@PathVariable String username){
+        return balanceService.findBalanceHistoryByUsername(username);
     }
-
-
 }

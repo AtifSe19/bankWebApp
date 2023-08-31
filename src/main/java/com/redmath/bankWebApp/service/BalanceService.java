@@ -4,6 +4,7 @@ import com.redmath.bankWebApp.model.AccountHolder;
 import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.repo.BalanceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -22,9 +23,9 @@ public class BalanceService {
         this.balanceRepo = balanceRepo;
     }
 
-    public List<Balance> findBalanceByAccountId(Long id){
-        return balanceRepo.findBalanceByAccountHolderId(id);
-    }
+//    public List<Balance> findBalanceByUsername(String username){
+//        return balanceRepo.findBalanceByAccountHolderUsername(username);
+//    }
 
     public void createBalance(AccountHolder user, Long amount, String transType) {
 
@@ -52,8 +53,8 @@ public class BalanceService {
         balanceRepo.save(bal);
     }
 
-    public List<Balance> viewBalanceHistory() {
-        return balanceRepo.findAll();
+    public List<Balance> findBalanceHistoryByUsername(String username) {
+        return balanceRepo.findBalanceHistoryByUsername(username);
     }
 
     public Balance updateBalance(Balance bal, Long amount, String transType) {

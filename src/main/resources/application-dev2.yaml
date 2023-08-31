@@ -3,3 +3,7 @@ bank:
     url: jdbc:postgresql://localhost:5432/myBank
     username: postgres
     password: my name Is
+  security:
+    user:
+      name: admin
+      password: admin

@@ -6,11 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "transaction")
@@ -31,7 +28,7 @@ public class Transaction {
     private String db_cr_indicator;
 
     @ManyToOne
-    @JoinColumn(name = "fk_acc_holder_id", nullable = false)
+    @JoinColumn(name = "fk_account_holder_id", nullable = false)
     @JsonIgnore
     private AccountHolder accountHolder;
 }

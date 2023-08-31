@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "balance")
@@ -26,7 +25,7 @@ public class Balance {
     private String db_cr_indicator;
 
     @ManyToOne
-    @JoinColumn(name = "fk_acc_holder_id", nullable = false)
+    @JoinColumn(name = "fk_account_holder_id", nullable = false)
     @JsonIgnore
     private AccountHolder accountHolder;
 
