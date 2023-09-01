@@ -1,7 +1,0 @@
-node_modules
-src/lib
-
-# Ignore any generated files
-*.log
-/dist/
-/lib/

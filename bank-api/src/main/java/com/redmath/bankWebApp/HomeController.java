@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping
     public String hello(){
-        return "Welcome to our bank app!";
+        return "Welcome to our Bank app (backend)!";
     }
 }

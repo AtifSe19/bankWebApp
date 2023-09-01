@@ -33,11 +33,15 @@ build/
 ### VS Code ###
 .vscode/
 
-### NPM ###
-node_modules/
-src/lib
-
-# Ignore any generated files
-*.log
-/lib/
+**/target/
+**/.classpath
+**/.project
+**/.factorypath
+**/.settings/
+**/.sts4-cache/
+**/.idea/
+*.iml
+**/bin/
+**/node_modules/
+**/package-lock.json
 
