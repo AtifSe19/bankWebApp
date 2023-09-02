@@ -1,13 +1,42 @@
-{
-    "username": "atif",
-    "email": "atifse19@gmail.com",
-    "password": 123,
-    "roles": "ADMIN",
-    "address": "Badami Bagh, Lahore"
-}
-
-{
-    "amount": 500000,
-    "db_cr_indicator": "db",
-    "account_holder_id": 1
-}
+[
+    {
+        "id": 1,
+        "username": "atif",
+        "email": "atifse19@gmail.com",
+        "password": "123",
+        "roles": "ADMIN",
+        "address": "Badami Bagh, Lahore"
+    },
+    {
+        "id": 2,
+        "username": "taimoor",
+        "email": "taimoor@gmail.com",
+        "password": "321",
+        "roles": "USER",
+        "address": "Shahdhara, Lahore"
+    },
+    {
+        "id": 3,
+        "username": "kamran",
+        "email": "kamran@gmail.com",
+        "password": "abc",
+        "roles": "USER",
+        "address": "Shahdhara, Lahore"
+    },
+    {
+        "id": 4,
+        "username": "abdulrehman",
+        "email": "abdulrehman@gmail.com",
+        "password": "abc123",
+        "roles": "USER",
+        "address": "Badami Bagh, Lahore"
+    },
+    {
+        "id": 5,
+        "username": "irfan",
+        "email": "irfan@gmail.com",
+        "password": "my name Is",
+        "roles": "ADMIN",
+        "address": "Shahdhara, Lahore"
+    }
+]

@@ -1,5 +1,6 @@
 package com.redmath.bankWebApp.controller;
 
+import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.model.Transaction;
 import com.redmath.bankWebApp.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,12 @@ public class TransactionController {
     }
 
     @PutMapping("/deposit/{username}")
-    public void depositCash(@PathVariable String username){
-        transactionService.depositCash(username);
+    public void depositCash(@PathVariable String username, @RequestBody Balance balance){
+        transactionService.depositCash(username, balance);
     }
 
     @PutMapping("/withdraw/{username}")
-    public void withdrawCash(@PathVariable String username){
-        transactionService.withdrawCash(username);
+    public void withdrawCash(@PathVariable String username, @RequestBody Balance balance){
+        transactionService.withdrawCash(username, balance);
     }
 }

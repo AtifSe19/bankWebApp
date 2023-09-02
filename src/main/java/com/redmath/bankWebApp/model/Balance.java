@@ -25,7 +25,8 @@ public class Balance {
     @NonNull
     private String db_cr_indicator;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "fk_acc_holder_id", nullable = false)
     @JsonIgnore
     private AccountHolder accountHolder;
 

@@ -40,14 +40,4 @@ public class AccountHolderController {
         return accountHolderService.getAccountHolderById(id);
     }
 
-
-    @PostMapping("/deposit/{username}")
-    public void depositCash(@PathVariable String username, @RequestBody Balance balance){
-        accountHolderService.depositCash(username, balance);
-    }
-
-    @PostMapping("/withdraw/{username}")
-    public void withdrawCash(@PathVariable String username, @RequestBody Balance balance){
-        accountHolderService.withdrawCash(username, balance);
-    }
 }

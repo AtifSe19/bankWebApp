@@ -22,15 +22,15 @@ public class BalanceController {
         return balanceService.findBalanceByAccountId(id);
     }
 
-    @PostMapping
-    public void createBalance(@RequestBody Balance balance){
-        balanceService.createBalance(balance);
-    }
+//    @PostMapping
+//    public void createBalance(@RequestBody Balance balance){
+//        balanceService.createBalance(balance);
+//    }
 
-    @PutMapping("/update/{id}")
-    public Balance updateBalance(@PathVariable Long id, @RequestBody Balance balance){
-        return balanceService.updateBalance(id, balance);
-    }
+//    @PutMapping("/update/{id}")
+//    public Balance updateBalance(@PathVariable Long id, @RequestBody Balance balance){
+//        return balanceService.updateBalance(id, balance);
+//    }
 
     @GetMapping
     public List<Balance> viewBalanceHistory(){

@@ -1,6 +1,7 @@
 package com.redmath.bankWebApp.service;
 
 import com.redmath.bankWebApp.controller.AccountHolderController;
+import com.redmath.bankWebApp.controller.BalanceController;
 import com.redmath.bankWebApp.model.AccountHolder;
 import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.model.Transaction;
@@ -21,81 +22,19 @@ import java.util.Optional;
 public class AccountHolderService {
 
     private final AccountHolderRepo accountHolderRepo;
-    private final TransactionService transactionService;
+    private final BalanceService balanceService;
     @Autowired
-    public AccountHolderService(AccountHolderRepo accountHolderRepo, TransactionService transactionService){
-        this.transactionService = transactionService;
+    public AccountHolderService
+            (AccountHolderRepo accountHolderRepo,
+             TransactionService transactionService,
+             BalanceService balanceService){
         this.accountHolderRepo = accountHolderRepo;
+        this.balanceService = balanceService;
     }
 
     public void createAccountHolder(AccountHolder user){
-        Balance bal = new Balance();
-        bal.setAmount(0L);
-        bal.setAccountHolder(user);
-        bal.setDate(LocalDateTime.now());
-        bal.setDb_cr_indicator("CR");
-        user.setBalances(List.of(bal));
-
         accountHolderRepo.save(user);
-    }
-
-    public void depositCash(String username, Balance balance) {
-        AccountHolder foundUser = accountHolderRepo.findByUsername(username).orElse(null);
-        if(foundUser == null){
-            throw new IllegalStateException("User not found");
-        }
-        else {
-
-            int foundUserBalListSize = foundUser.getBalances().size();
-            Balance latestBalTransaction = foundUser.getBalances().get(foundUserBalListSize - 1);
-            LocalDate latestDate = LocalDate.from(latestBalTransaction.getDate());
-
-            if(latestDate.isEqual(LocalDate.now())){
-                latestBalTransaction.setAmount(latestBalTransaction.getAmount() + balance.getAmount());
-                latestBalTransaction.setDb_cr_indicator("CR");
-            }
-
-            else {
-                balance.setAmount(balance.getAmount());
-                foundUser.getBalances().add(balance);
-                balance.setDb_cr_indicator("CR");
-                balance.setAccountHolder(foundUser);
-            }
-            transactionService.createTransaction(foundUser, balance, "Deposit");
-            accountHolderRepo.save(foundUser);
-        }
-    }
-
-    public void withdrawCash(String username, Balance balance) {
-        AccountHolder foundUser = accountHolderRepo.findByUsername(username).orElse(null);
-        if(foundUser == null){
-            throw new IllegalStateException("User not found");
-        }
-        else {
-            int foundUserBalListSize = foundUser.getBalances().size();
-            Balance latestBalTransaction = foundUser.getBalances().get(foundUserBalListSize - 1);
-            LocalDate latestDate = LocalDate.from(latestBalTransaction.getDate());
-
-            if(latestDate.isEqual(LocalDate.now())){
-
-                if(latestBalTransaction.getAmount() < balance.getAmount()){
-                    throw new IllegalStateException("Insufficient funds");
-                }
-                else {
-                    latestBalTransaction.setAmount(latestBalTransaction.getAmount() - balance.getAmount());
-                    latestBalTransaction.setDb_cr_indicator("DB");
-                }
-            }
-
-            else {
-                balance.setAmount(balance.getAmount());
-                foundUser.getBalances().add(balance);
-                balance.setDb_cr_indicator("DB");
-                balance.setAccountHolder(foundUser);
-            }
-            transactionService.createTransaction(foundUser, balance, "Withdrawal");
-            accountHolderRepo.save(foundUser);
-        }
+        balanceService.createBalance(user, 0L, "CR");
     }
 
     public List<AccountHolder> getAllAccountHolders() {
