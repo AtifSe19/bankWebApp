@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/accounts")
+@CrossOrigin("https://localhost:3000")
 public class AccountHolderController {
     private final AccountHolderService accountHolderService;
     @Autowired
@@ -45,6 +46,9 @@ public class AccountHolderController {
     public AccountHolder getAccountHolderById(@PathVariable Long id){
         return accountHolderService.getAccountHolderById(id);
     }
+
+
+
 
 
 //    hasRole vs hasAuthority

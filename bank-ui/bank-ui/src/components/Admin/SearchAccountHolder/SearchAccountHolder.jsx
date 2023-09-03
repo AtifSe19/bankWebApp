@@ -1,12 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const AdminPanel = () => {
+const SearchAccountHolder = () => {
   const [searchInput, setSearchInput] = useState('');
-  const [accounts, setAccounts] = useState([
-    { id: 1, name: 'atif', email: 'atif@example.com', balance: '$1000' },
-    { id: 2, name: 'taimoor', email: 'taimoor@example.com', balance: '$1500' },
-    // Add more accounts as needed
-  ]);
+  const [accounts, setAccounts] = useState([]);
+  const [originalAccounts, setOriginalAccounts] = useState([]);
+
+  // Function to fetch accounts from the backend
+  const fetchAccounts = async () => {
+    try {
+      const response = await axios.get('http://localhost:9080/api/v1/accounts');
+      if (response.status === 200) {
+        const data = response.data; // Use response.data to access the JSON data
+        setAccounts(data);
+        setOriginalAccounts(data); // Save a copy for searching
+      } else {
+        console.error('Failed to fetch accounts');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+
+  useEffect(() => {
+    fetchAccounts();
+  }, []);
 
   const handleSearchInputChange = (event) => {
     setSearchInput(event.target.value);
@@ -14,7 +33,9 @@ const AdminPanel = () => {
 
   const handleSearch = () => {
     // Filter accounts based on the search input
-    const filteredAccounts = accounts.filter(account => account.id.toString().includes(searchInput));
+    const filteredAccounts = originalAccounts.filter(account =>
+      account.id.toString().includes(searchInput)
+    );
     setAccounts(filteredAccounts);
   }
 
@@ -45,16 +66,18 @@ const AdminPanel = () => {
                 <th>#</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Balance</th>
+                <th>Address</th>
+                <th>Roles</th>
               </tr>
             </thead>
             <tbody className='table-group-divider'>
               {accounts.map(account => (
                 <tr key={account.id}>
                   <td>{account.id}</td>
-                  <td>{account.name}</td>
+                  <td>{account.username}</td>
                   <td>{account.email}</td>
-                  <td>{account.balance}</td>
+                  <td>{account.address}</td>
+                  <td>{account.roles}</td>
                 </tr>
               ))}
             </tbody>
@@ -65,4 +88,4 @@ const AdminPanel = () => {
   );
 }
 
-export default AdminPanel;
+export default SearchAccountHolder;

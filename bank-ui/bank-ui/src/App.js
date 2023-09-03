@@ -18,14 +18,12 @@ function App() {
   }, []);
   return (
     <Router>
-      {/* <Navbar user={user} /> */}
-      <Navbar user = {user}/>
+      <Navbar user={user} />
       {user && user.role === 'admin' ? (
         <AdminPanel />
       ) : (
         <UserPanel />
       )}
-
     </Router>
   );
 }

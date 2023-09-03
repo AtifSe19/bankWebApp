@@ -5,15 +5,16 @@ import DeleteAccountHolder from '../DeleteAccountHolder/DeleteAccountHolder';
 import UpdateAccountHolder from '../UpdateAccountHolder/UpdateAccountHolder';
 import SearchAccountHolder from '../SearchAccountHolder/SearchAccountHolder';
 import AdminHomePage from '../AdminHomePage/AdminHomePage';
-
+import Login from '../../Login/Login';
 const AdminPanel = () => {
     return (
         <Routes>
             <Route path="/" element={<AdminHomePage />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/addAccHolder" element={<AddAccountHolder />} />
             <Route path="/delAccHolder" element={<DeleteAccountHolder />} />
             <Route path="/updAccHolder" element={<UpdateAccountHolder />} />
-            <Route path="/searchAccHolder" element={<SearchAccountHolder />} />
+            <Route exact path="/searchAccHolder" element={<SearchAccountHolder />} />
         </Routes>
     )
 }
