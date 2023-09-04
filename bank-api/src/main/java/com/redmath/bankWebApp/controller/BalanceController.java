@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/balance")
+@CrossOrigin("https://localhost:3000")
 public class BalanceController {
 
     private final BalanceService balanceService;

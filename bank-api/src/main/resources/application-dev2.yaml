@@ -2,7 +2,7 @@ bank:
   db:
     url: jdbc:postgresql://localhost:5432/myBank
     username: postgres
-    password: my name Is
+    password: 123
   security:
     user:
       name: admin

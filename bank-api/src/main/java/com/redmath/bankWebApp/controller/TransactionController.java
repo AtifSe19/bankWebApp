@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/transactions")
+@CrossOrigin("https://localhost:3000")
 public class TransactionController {
     private final TransactionService transactionService;
     @Autowired
@@ -18,19 +19,19 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/history/{username}")
     @PreAuthorize("hasAuthority('USER')")
     public List<Transaction> viewTransactionsHistory(@PathVariable String username){
         return transactionService.viewTransactionsHistory(username);
     }
 
-    @PutMapping("/deposit/{username}")
+    @PostMapping("/deposit/{username}")
     @PreAuthorize("hasAuthority('USER')")
     public void depositCash(@PathVariable String username, @RequestBody Balance balance){
         transactionService.depositCash(username, balance);
     }
 
-    @PutMapping("/withdraw/{username}")
+    @PostMapping("/withdraw/{username}")
     @PreAuthorize("hasAuthority('USER')")
     public void withdrawCash(@PathVariable String username, @RequestBody Balance balance){
         transactionService.withdrawCash(username, balance);

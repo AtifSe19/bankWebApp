@@ -5,6 +5,7 @@ import com.redmath.bankWebApp.repo.AccountHolderRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +39,7 @@ public class AccountHolderService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AccountHolder accHolder = findByUsername(username);
         if(accHolder == null){
+            System.out.println(username);
             throw new UsernameNotFoundException(username + "not found");
         }
         return new User(accHolder.getUsername(), accHolder.getPassword(), true, true, true, true,
@@ -80,4 +82,5 @@ public class AccountHolderService implements UserDetailsService {
     public AccountHolder getAccountHolderById(Long id) {
         return accountHolderRepo.findById(id).orElse(null);
     }
+
 }
