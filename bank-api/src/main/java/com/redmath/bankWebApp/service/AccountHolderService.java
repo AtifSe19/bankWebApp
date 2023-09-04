@@ -83,4 +83,7 @@ public class AccountHolderService implements UserDetailsService {
         return accountHolderRepo.findById(id).orElse(null);
     }
 
+    public List<String> getRolesByUsername(String username) {
+        return accountHolderRepo.getRolesByUsername(username);
+    }
 }

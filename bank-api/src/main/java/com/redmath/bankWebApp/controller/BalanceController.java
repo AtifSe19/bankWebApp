@@ -40,7 +40,6 @@ public class BalanceController {
         return balanceService.showBalance(auth.getName());
     }
     @GetMapping("getUsername")
-    @PreAuthorize("hasAuthority('USER')")
     public String getUsername(Authentication auth){
         return auth.getName();
     }

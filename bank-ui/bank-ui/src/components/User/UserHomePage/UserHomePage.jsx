@@ -51,7 +51,7 @@ const UserHomePage = () => {
       <div className="row">
         <div className="col-md-6 offset-md-3 text-center">
           <h1>Welcome, @_{username}!</h1>
-          <p>This is the account holder dashboard of the Bank Application.</p>
+          <p>This is the Account Holder dashboard of the Bank Application.</p>
           {balance !== null ? (
             <p>Your balance: ${balance.toFixed(2)}</p>
           ) : (

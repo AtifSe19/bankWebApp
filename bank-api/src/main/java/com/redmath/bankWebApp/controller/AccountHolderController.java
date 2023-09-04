@@ -5,8 +5,10 @@ import com.redmath.bankWebApp.service.AccountHolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -45,6 +47,12 @@ public class AccountHolderController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public AccountHolder getAccountHolderById(@PathVariable Long id){
         return accountHolderService.getAccountHolderById(id);
+    }
+
+    @GetMapping("/getRoles")
+
+    public List<String> getRoles(Authentication auth){
+        return accountHolderService.getRolesByUsername(auth.getName());
     }
 
 
