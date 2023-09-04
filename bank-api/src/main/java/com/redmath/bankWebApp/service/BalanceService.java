@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -67,7 +68,11 @@ public class BalanceService {
         return balanceRepo.save(bal);
     }
 
-    public Balance showBalance(Authentication auth) {
-        return balanceRepo.findBalanceByAccountHolderUsername(auth.getName());
+    public Balance showBalance(String username) {
+        return balanceRepo.findBalanceByAccountHolderUsername(username);
+    }
+
+    public Balance getUsernameByAccountHolderId(Long id) {
+        return balanceRepo.findUsernameByAccountHolderId(id);
     }
 }

@@ -3,15 +3,17 @@ package com.redmath.bankWebApp.controller;
 import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.model.Transaction;
 import com.redmath.bankWebApp.service.TransactionService;
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/transactions")
-@CrossOrigin("https://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000",methods = {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE,RequestMethod.PUT})
 public class TransactionController {
     private final TransactionService transactionService;
     @Autowired
@@ -19,21 +21,27 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @GetMapping("/history/{username}")
+    @GetMapping("/history")
     @PreAuthorize("hasAuthority('USER')")
-    public List<Transaction> viewTransactionsHistory(@PathVariable String username){
-        return transactionService.viewTransactionsHistory(username);
+    public List<Transaction> viewTransactionsHistory(Authentication auth){
+        return transactionService.viewTransactionsHistory(auth.getName());
     }
 
-    @PostMapping("/deposit/{username}")
+    @PostMapping("/deposit")
     @PreAuthorize("hasAuthority('USER')")
-    public void depositCash(@PathVariable String username, @RequestBody Balance balance){
-        transactionService.depositCash(username, balance);
+    public void depositCash(Authentication auth, @RequestBody Balance balance){
+        transactionService.depositCash(auth.getName(), balance);
     }
 
-    @PostMapping("/withdraw/{username}")
+    @PostMapping("/withdraw")
     @PreAuthorize("hasAuthority('USER')")
-    public void withdrawCash(@PathVariable String username, @RequestBody Balance balance){
-        transactionService.withdrawCash(username, balance);
+    public void withdrawCash(Authentication auth, @RequestBody Balance balance){
+        transactionService.withdrawCash(auth.getName(), balance);
+    }
+
+    @PostMapping("/transfer")
+    @PreAuthorize("hasAuthority('USER')")
+    public void transferCash(Authentication sender, @RequestParam String receiver, @RequestBody Balance balance){
+        transactionService.transferCash(sender.getName(), receiver, balance);
     }
 }

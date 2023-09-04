@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const TransactionHistory = ({ username = "atif" }) => {
+const TransactionHistory = () => {
   const [transactionHistory, setTransactionHistory] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:9080/api/v1/transactions/history/${username}`);
+        const response = await axios.get(`http://localhost:9080/api/v1/transactions/history`, {
+          withCredentials: true,
+          headers: {
+            'Authorization': 'Basic ' + btoa('admin:admin'),
+          },
+        });
 
         if (response.status === 200) {
           // Process and format the date
@@ -25,7 +30,7 @@ const TransactionHistory = ({ username = "atif" }) => {
     };
 
     fetchData();
-  }, [username]);
+  }, []);
 
   // Function to format the timestamp
   const formatDate = (dateArray) => {
@@ -56,7 +61,7 @@ const TransactionHistory = ({ username = "atif" }) => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Amount</th>
+            <th>Amount ($)</th>
             <th>DB/CR</th>
             <th>Date</th>
             <th>Description</th>
@@ -79,3 +84,6 @@ const TransactionHistory = ({ username = "atif" }) => {
 };
 
 export default TransactionHistory;
+
+
+

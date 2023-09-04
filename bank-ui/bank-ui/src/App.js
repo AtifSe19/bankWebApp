@@ -11,9 +11,6 @@ function App() {
   // setUser({ role: 'admin' });
 
   useEffect(() => {
-    // Implement user authentication and set the user object
-    // You can fetch the user's role from your authentication system here
-    // setUser({ role: 'admin' }); // Example for an admin user
     setUser({ role: 'user' }); // Example for a non-admin user
   }, []);
   return (

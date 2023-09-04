@@ -30,13 +30,13 @@ public class TransactionService {
         this.balanceService = balanceService;
         this.accountHolderRepo = accountHolderRepo;
     }
-    public void createTransaction(@NotNull AccountHolder foundUser, @NotNull Balance balance, String description){
+    public void createTransaction(@NotNull AccountHolder foundUser, @NotNull Balance balance, @NotNull String transType, String description){
 
         Transaction transaction = new Transaction();
         transaction.setDate(LocalDateTime.now());
         transaction.setDescription(description);
-        String db_or_cr = description.equals("Deposit") ? "CR" : "DB";
-        transaction.setDb_cr_indicator(db_or_cr);
+//        String db_or_cr = description.equals("Deposit") ? "CR" : "DB";
+        transaction.setDb_cr_indicator(transType);
         transaction.setAmount(balance.getAmount());
         foundUser.getTransactions().add(transaction);
         transaction.setAccountHolder(foundUser);
@@ -85,7 +85,7 @@ public class TransactionService {
         Boolean toUpdate = latestDate.isEqual(LocalDate.now());
         validateTransaction(foundAccLatestBalRec, balance.getAmount(), transType, toUpdate);
 
-        createTransaction(foundAcc, balance, transDesc);
+        createTransaction(foundAcc, balance, transType, transDesc);
         accountHolderRepo.save(foundAcc);
     }
     public void depositCash(String username, Balance balance) {
@@ -94,5 +94,10 @@ public class TransactionService {
 
     public void withdrawCash(String username, Balance balance) {
         handleTransaction(username, balance, "DB", "Withdrawal");
+    }
+
+    public void transferCash(String sender, String receiver, Balance balance) {
+        handleTransaction(sender, balance, "DB", "You" + " transferred $" + balance.getAmount() + " to @_" + receiver);
+        handleTransaction(receiver, balance, "CR", "$" + balance.getAmount() + " was transferred to you by @_" + sender);
     }
 }

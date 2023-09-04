@@ -41,7 +41,8 @@ public class SecurityConfig {
                 new AntPathRequestMatcher("/actuator/**","GET"),
                 new AntPathRequestMatcher("/static/**","GET"),
                 new AntPathRequestMatcher("/static/**","POST")
-//                new AntPathRequestMatcher("/api/v1/accounts/**","GET"),
+//                new AntPathRequestMatcher("/api/v1/balance/**","GET")
+//                new AntPathRequestMatcher("/api/v1/transactions/**","POST")
 //                new AntPathRequestMatcher("/api/v1/accounts/**","POST"),
 //                new AntPathRequestMatcher("/api/v1/transactions/**","GET"),
 //                new AntPathRequestMatcher("/api/v1/transactions/**","POST")
@@ -50,9 +51,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.formLogin(formLogin->formLogin.loginPage("/login").permitAll());
-//        http.csrf(config -> config.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()));
+//        http.formLogin(formLogin->formLogin.loginPage("/login").permitAll());
+                http.formLogin(formLogin->formLogin.defaultSuccessUrl("http://localhost:3000", true).permitAll());
+        http.csrf(config -> config.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()));
 
         http.authorizeHttpRequests(config -> config.anyRequest().authenticated());
 //        http.cors(AbstractHttpConfigurer::disable);

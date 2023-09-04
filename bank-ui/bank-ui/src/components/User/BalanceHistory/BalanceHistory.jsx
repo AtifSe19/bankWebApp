@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const BalanceHistory = ({ username = "atif" }) => {
+const BalanceHistory = () => {
   const [balanceHistory, setBalanceHistory] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:9080/api/v1/balance/history/${username}`);
+        const response = await axios.get(`http://localhost:9080/api/v1/balance/history`, {
+          withCredentials: true,
+          headers: {
+            'Authorization': 'Basic ' + btoa('admin:admin'),
+          },
+        });
 
         if (response.status === 200) {
-          // Process and format the date
+          // Map the response data and format the date
           const formattedData = response.data.map((entry) => ({
-            ...entry,
-            formattedDate: formatDate(entry.date), // Format the date here
+            id: entry.id,
+            amount: entry.amount,
+            db_cr_indicator: entry.db_cr_indicator,
+            date: formatDate(entry.date),
           }));
+
           setBalanceHistory(formattedData);
         } else {
           console.error('Failed to fetch balance history');
@@ -25,7 +33,7 @@ const BalanceHistory = ({ username = "atif" }) => {
     };
 
     fetchData();
-  }, [username]);
+  }, []);
 
   // Function to format the timestamp
   const formatDate = (dateArray) => {
@@ -34,10 +42,10 @@ const BalanceHistory = ({ username = "atif" }) => {
     }
 
     // Extract date components from the array
-    const [year, month, day, hour, minute, second] = dateArray;
+    const [year, month, day, hour, minute, second, milliseconds] = dateArray;
 
     // Create a Date object with the extracted components
-    const date = new Date(year, month - 1, day, hour, minute, second);
+    const date = new Date(year, month - 1, day, hour, minute, second, milliseconds);
 
     // Format the date as desired (e.g., YYYY-MM-DD HH:mm:ss)
     const formattedDate = date.toISOString().slice(0, 19).replace('T', ' ');
@@ -56,7 +64,7 @@ const BalanceHistory = ({ username = "atif" }) => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Amount</th>
+            <th>Amount ($)</th>
             <th>DB/CR</th>
             <th>Date</th>
           </tr>
@@ -64,16 +72,15 @@ const BalanceHistory = ({ username = "atif" }) => {
         <tbody className='table-group-divider'>
           {balanceHistory.map((entry, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
+              <td>{entry.id}</td>
               <td>{entry.amount}</td>
               <td>{entry.db_cr_indicator}</td>
-              <td>{entry.formattedDate}</td>
+              <td>{entry.date}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-
   );
 };
 
