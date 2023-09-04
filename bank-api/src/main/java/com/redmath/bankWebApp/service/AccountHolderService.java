@@ -63,21 +63,15 @@ public class AccountHolderService implements UserDetailsService {
     }
 
 
-    public AccountHolder updateAccountHolder(Long id, AccountHolder accountHolder) {
-        AccountHolder foundUser = accountHolderRepo.findById(id).orElse(null);
+    public AccountHolder updateAccountHolder(String username, AccountHolder accountHolder) {
+        AccountHolder foundUser = accountHolderRepo.findByUsername(username).orElse(null);
 
-        foundUser.setUsername(foundUser.getUsername());
-        foundUser.setEmail(foundUser.getEmail());
-        foundUser.setPassword(foundUser.getPassword());
-        foundUser.setRoles(foundUser.getRoles());
-        foundUser.setAddress(foundUser.getAddress());
+        foundUser.setEmail(accountHolder.getEmail());
+        foundUser.setAddress(accountHolder.getAddress());
 
         return accountHolderRepo.save(foundUser);
     }
 
-    public void deleteAccountHolder(Long id) {
-        accountHolderRepo.deleteById(id);
-    }
 
     public AccountHolder getAccountHolderById(Long id) {
         return accountHolderRepo.findById(id).orElse(null);
@@ -85,5 +79,15 @@ public class AccountHolderService implements UserDetailsService {
 
     public List<String> getRolesByUsername(String username) {
         return accountHolderRepo.getRolesByUsername(username);
+    }
+
+    public AccountHolder getAccountHolderByUsername(String name) {
+        return accountHolderRepo.getAccountHolderByUsername(name).orElse(null);
+    }
+
+    public void deleteAccountHolderByUsername(String username) {
+
+        AccountHolder foundUser = accountHolderRepo.findByUsername(username).orElse(null);
+        accountHolderRepo.deleteAccountHolderByUsername(foundUser);
     }
 }

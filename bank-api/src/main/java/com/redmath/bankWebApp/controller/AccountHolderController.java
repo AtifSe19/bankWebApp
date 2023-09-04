@@ -26,16 +26,16 @@ public class AccountHolderController {
     public void createAccountHolder(@RequestBody AccountHolder user){
         accountHolderService.createAccountHolder(user);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void deleteAccountHolder(@PathVariable Long id){
-        accountHolderService.deleteAccountHolder(id);
+    public void deleteAccountHolder(@PathVariable String username){
+        accountHolderService.deleteAccountHolderByUsername(username);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public AccountHolder updateAccountHolder(@PathVariable Long id, @RequestBody AccountHolder accountHolder){
-        return accountHolderService.updateAccountHolder(id, accountHolder);
+    public AccountHolder updateAccountHolder(@PathVariable String username, @RequestBody AccountHolder accountHolder){
+        return accountHolderService.updateAccountHolder(username, accountHolder);
     }
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -43,10 +43,16 @@ public class AccountHolderController {
         return accountHolderService.getAllAccountHolders();
     }
 
-    @GetMapping("/{id}")
+//    @GetMapping("/{id}")
+//    @PreAuthorize("hasAuthority('ADMIN')")
+//    public AccountHolder getAccountHolderById(@PathVariable Long id){
+//        return accountHolderService.getAccountHolderById(id);
+//    }
+
+    @GetMapping("/getSpecAccHolder/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public AccountHolder getAccountHolderById(@PathVariable Long id){
-        return accountHolderService.getAccountHolderById(id);
+    public AccountHolder getAccountHolderByUsername(@PathVariable String username){
+        return accountHolderService.getAccountHolderByUsername(username);
     }
 
     @GetMapping("/getRoles")

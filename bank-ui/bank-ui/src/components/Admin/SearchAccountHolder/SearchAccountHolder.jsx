@@ -9,11 +9,16 @@ const SearchAccountHolder = () => {
   // Function to fetch accounts from the backend
   const fetchAccounts = async () => {
     try {
-      const response = await axios.get('http://localhost:9080/api/v1/accounts');
+      const response = await axios.get('http://localhost:9080/api/v1/accounts', {
+        withCredentials: true,
+        headers: {
+          'Authorization': 'Basic ' + btoa('admin:admin'),
+        },
+      });
       if (response.status === 200) {
-        const data = response.data; // Use response.data to access the JSON data
+        const data = response.data; 
         setAccounts(data);
-        setOriginalAccounts(data); // Save a copy for searching
+        setOriginalAccounts(data); // Saving a copy for searching
       } else {
         console.error('Failed to fetch accounts');
       }

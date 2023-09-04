@@ -6,9 +6,11 @@ const AddAccountHolder = () => {
     username: '',
     email: '',
     password: '',
-    role: 'user', // Default role is 'user'
+    roles: 'USER', // Default role is 'user'
     address: '',
   });
+
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,21 +22,34 @@ const AddAccountHolder = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.post('http://localhost:9080/api/v1/accounts', formData);
-
+      const dataToSend = {
+        ...formData,
+        roles: formData.roles.toUpperCase(),
+      };
+  
+      const response = await axios.post('http://localhost:9080/api/v1/accounts', dataToSend, {
+        withCredentials: true,
+        headers: {
+          'Authorization': 'Basic ' + btoa('admin:admin'),
+        },
+      });
+  
       if (response.status === 200) {
         // Handle successful submission, e.g., show a success message or redirect
         console.log('Account holder added successfully');
+        setMessage('Account holder added successfully');
       } else {
         // Handle submission failure
         console.error('Submission failed');
+        setMessage("Account holder can't be added");
       }
     } catch (error) {
-      console.error('Error:', error);
+      setMessage(`Error: ${error.message}`);
     }
   };
+  
 
   return (
     <div className='container mt-5 my-5'>
@@ -83,10 +98,10 @@ const AddAccountHolder = () => {
               <input
                 className="form-check-input"
                 type="radio"
-                name="role"
+                name="roles"
                 id="admin"
                 value="admin"
-                checked={formData.role === 'admin'}
+                checked={formData.roles === 'admin'}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="admin">
@@ -97,10 +112,10 @@ const AddAccountHolder = () => {
               <input
                 className="form-check-input"
                 type="radio"
-                name="role"
+                name="roles"
                 id="user"
                 value="user"
-                checked={formData.role === 'user'}
+                checked={formData.roles === 'user'}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="user">
@@ -120,6 +135,7 @@ const AddAccountHolder = () => {
             </div>
             <button type="submit" className="btn btn-primary">Add</button>
           </form>
+          {message && <p className="mt-3">{message}</p>}
         </div>
       </div>
     </div>

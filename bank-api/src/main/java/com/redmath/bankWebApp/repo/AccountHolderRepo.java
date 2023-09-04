@@ -18,4 +18,16 @@ public interface AccountHolderRepo extends JpaRepository<AccountHolder, Long> {
 
     @Query(value = "SELECT roles FROM account_holder WHERE username = ?1", nativeQuery = true)
     List<String> getRolesByUsername(String username);
+
+    @Query(value = "SELECT * FROM account_holder WHERE username = ?1", nativeQuery = true)
+    Optional<AccountHolder> getAccountHolderByUsername(String name);
+
+
+
+
+
+//    delete founderUser from account_holder table
+
+    @Query(value = "DELETE acc FROM account_holder acc WHERE acc = ?")
+    void deleteAccountHolderByUsername(AccountHolder foundUser);
 }
