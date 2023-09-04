@@ -32,3 +32,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### NPM ###
+node_modules
+src/lib
+
+# Ignore any generated files
+*.log
+/lib/
