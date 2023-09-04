@@ -34,9 +34,10 @@ build/
 .vscode/
 
 ### NPM ###
-node_modules
+node_modules/
 src/lib
 
 # Ignore any generated files
 *.log
 /lib/
+
