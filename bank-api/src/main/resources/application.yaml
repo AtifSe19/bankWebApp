@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: bankWebApp
+  security:
+    user:
+      name: ${bank.security.user.name}
+      password: ${bank.security.user.password}
+  profiles:
+    include:
+#      - dev
+      - dev2
+  datasource:
+    url: ${bank.db.url}
+    username: ${bank.db.username}
+    password: ${bank.db.password}
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none # make this property none if you want to retain your data in the database
+logging:
+  level:
+    sql: debug
+
+server:
+  port: 9080
