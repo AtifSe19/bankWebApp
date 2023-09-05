@@ -3,6 +3,8 @@ package com.redmath.bankWebApp.service;
 import com.redmath.bankWebApp.model.AccountHolder;
 import com.redmath.bankWebApp.repo.AccountHolderRepo;
 
+import com.redmath.bankWebApp.repo.BalanceRepo;
+import com.redmath.bankWebApp.repo.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
@@ -23,10 +25,7 @@ public class AccountHolderService implements UserDetailsService {
 
     private final BalanceService balanceService;
     @Autowired
-    public AccountHolderService
-            (AccountHolderRepo accountHolderRepo,
-             TransactionService transactionService,
-             BalanceService balanceService){
+    public AccountHolderService(AccountHolderRepo accountHolderRepo, BalanceService balanceService){
         this.accountHolderRepo = accountHolderRepo;
         this.balanceService = balanceService;
     }
@@ -55,7 +54,8 @@ public class AccountHolderService implements UserDetailsService {
     public void createAccountHolder(AccountHolder user){
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         accountHolderRepo.save(user);
-        balanceService.createBalance(user, 0L, "CR");
+        if(user.getRoles().equalsIgnoreCase("USER"))
+            balanceService.createBalance(user, 0L, "CR");
     }
 
     public List<AccountHolder> getAllAccountHolders() {
@@ -88,6 +88,8 @@ public class AccountHolderService implements UserDetailsService {
     public void deleteAccountHolderByUsername(String username) {
 
         AccountHolder foundUser = accountHolderRepo.findByUsername(username).orElse(null);
-        accountHolderRepo.deleteAccountHolderByUsername(foundUser);
+        if(foundUser != null){
+            accountHolderRepo.deleteById(foundUser.getId());
+        }
     }
 }

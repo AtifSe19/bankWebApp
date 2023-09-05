@@ -35,7 +35,6 @@ public class TransactionService {
         Transaction transaction = new Transaction();
         transaction.setDate(LocalDateTime.now());
         transaction.setDescription(description);
-//        String db_or_cr = description.equals("Deposit") ? "CR" : "DB";
         transaction.setDb_cr_indicator(transType);
         transaction.setAmount(balance.getAmount());
         foundUser.getTransactions().add(transaction);
