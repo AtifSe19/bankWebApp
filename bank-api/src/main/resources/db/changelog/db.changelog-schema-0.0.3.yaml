@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: schema-0.0.3
+      author: ATIF IQBAL BUTT
+      changes:
+        - createTable:
+            tableName: transaction
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT  # Use BIGINT for H2
+                  autoIncrement: true  # H2 auto-increment
+              - column:
+                  name: date
+                  type: TIMESTAMP
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: amount
+                  type: BIGINT  # Use BIGINT for H2
+              - column:
+                  name: db_cr_indicator
+                  type: VARCHAR(255)
+              - column:
+                  name: fk_account_holder_id
+                  type: BIGINT
+
+        - addPrimaryKey:
+            tableName: transaction
+            columnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: transaction
+            baseColumnNames: fk_account_holder_id
+            referencedTableName: account_holder
+            referencedColumnNames: id
+            constraintName: fk_transaction_account_holder

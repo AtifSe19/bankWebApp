@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: schema-0.0.2
+      author: ATIF IQBAL BUTT
+      changes:
+        - createTable:
+            tableName: balance
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT  # Use BIGINT for H2
+                  autoIncrement: true  # H2 auto-increment
+              - column:
+                  name: date
+                  type: TIMESTAMP
+              - column:
+                  name: amount
+                  type: BIGINT  # Use BIGINT for H2
+              - column:
+                  name: db_cr_indicator
+                  type: VARCHAR(255)
+              - column:
+                  name: fk_account_holder_id
+                  type: BIGINT
+
+        - addPrimaryKey:
+            tableName: balance
+            columnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: balance
+            baseColumnNames: fk_account_holder_id
+            referencedTableName: account_holder
+            referencedColumnNames: id
+            constraintName: fk_balance_account_holder

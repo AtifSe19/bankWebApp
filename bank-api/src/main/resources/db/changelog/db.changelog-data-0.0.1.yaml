@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: data-0.0.1
+      author: ATIF IQBAL BUTT
+      changes:
+        - insert:
+            tableName: account_holder
+            columns:
+              - column:
+                  name: username
+                  value: 'admin'
+              - column:
+                  name: email
+                  value: 'admin@example.com'
+              - column:
+                  name: password
+                  value: '$2a$12$X2xwwVG4dU6LZH4cA8x0UeFzl39cTZW1kg2Zcqe6a/kjylR1Hx6wa' # Password: admin
+              - column:
+                  name: roles
+                  value: 'ADMIN'
+              - column:
+                  name: address
+                  value: 'Lahore, Pakistan'

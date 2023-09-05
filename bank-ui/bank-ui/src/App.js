@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './lib/bootstrap/dist/css/bootstrap.min.css';
-import './lib/bootstrap/dist/js/bootstrap.min.js';
+import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import AdminPanel from './components/Admin/AdminPanel/AdminPanel';
 import UserPanel from './components/User/UserPanel/UserPanel';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
+import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);

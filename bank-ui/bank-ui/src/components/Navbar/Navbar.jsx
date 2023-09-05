@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Navbar = ({ user }) => {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="#">
                         ABC Bank
@@ -80,7 +80,7 @@ const Navbar = ({ user }) => {
                         </ul>
 
                         {/* <li className="nav-item"> */}
-                            <Link className="nav-link" to="http://localhost:9080/logout">
+                            <Link className="nav-link" to="http://localhost:9080/logout " style={{color: "white"}}>
                                 Logout
                             </Link>
                         {/* </li> */}

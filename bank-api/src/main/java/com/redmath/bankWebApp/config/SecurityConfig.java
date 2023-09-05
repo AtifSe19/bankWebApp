@@ -40,7 +40,9 @@ public class SecurityConfig {
                 new AntPathRequestMatcher("/actuator", "GET"),
                 new AntPathRequestMatcher("/actuator/**","GET"),
                 new AntPathRequestMatcher("/static/**","GET"),
-                new AntPathRequestMatcher("/static/**","POST")
+                new AntPathRequestMatcher("/static/**","POST"),
+                new AntPathRequestMatcher("/h2-console/**", "GET"),
+                new AntPathRequestMatcher("/h2-console/**", "POST")
 //                new AntPathRequestMatcher("/api/v1/balance/**","GET")
 //                new AntPathRequestMatcher("/api/v1/transactions/**","POST")
 //                new AntPathRequestMatcher("/api/v1/accounts/**","GET")

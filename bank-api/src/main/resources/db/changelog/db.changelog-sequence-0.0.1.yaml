@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: sequence-0.0.1
+      author: ATIF IQBAL BUTT
+      changes:
+        - createSequence:
+            sequenceName: ACCOUNT_HOLDER_SEQ
+            incrementBy: 1
+            startValue: 1

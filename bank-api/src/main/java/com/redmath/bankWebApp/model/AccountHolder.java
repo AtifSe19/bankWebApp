@@ -17,7 +17,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class AccountHolder {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull

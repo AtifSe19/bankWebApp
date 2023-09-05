@@ -8,11 +8,13 @@ spring:
   profiles:
     include:
 #      - dev
-      - dev2
+      - local
   datasource:
     url: ${bank.db.url}
-    username: ${bank.db.username}
-    password: ${bank.db.password}
+    username: ${bank.db.username:}
+    password: ${bank.db.password:}
+  liquibase:
+    contexts: ${bank.liquibase.contexts:}
   h2:
     console:
       enabled: true

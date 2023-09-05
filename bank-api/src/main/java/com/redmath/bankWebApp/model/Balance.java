@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 public class Balance {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NonNull
     private LocalDateTime date;

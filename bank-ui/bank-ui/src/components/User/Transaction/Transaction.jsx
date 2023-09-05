@@ -31,7 +31,7 @@ const TransactionForm = () => {
       );
 
       if (response.status === 200) {
-        toast.success(<i className='fa fa-money'></i> + `Successfully ${transactionType}ed $${amount}`);
+        toast.success(`Successfully ${transactionType}ed $${amount}`);
       } else {
         toast.error(`Failed to ${transactionType} the transaction`);
       }

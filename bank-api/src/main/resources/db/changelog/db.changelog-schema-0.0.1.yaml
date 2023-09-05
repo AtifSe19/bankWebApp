@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: schema-0.0.1
+      author: ATIF IQBAL BUTT
+      changes:
+        - createTable:
+            tableName: account_holder
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT  # Use BIGINT for H2
+                  autoIncrement: true  # H2 auto-increment
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: roles
+                  type: VARCHAR(255)
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+
+        - addPrimaryKey:
+            tableName: account_holder
+            columnNames: id
+        - addUniqueConstraint:
+            tableName: account_holder
+            columnNames: username
+        - addUniqueConstraint:
+            tableName: account_holder
+            columnNames: email
+
