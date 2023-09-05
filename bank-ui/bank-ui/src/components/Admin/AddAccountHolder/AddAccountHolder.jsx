@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {toast} from 'react-toastify';
 
 const AddAccountHolder = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,6 @@ const AddAccountHolder = () => {
     address: '',
   });
 
-  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,15 +38,12 @@ const AddAccountHolder = () => {
   
       if (response.status === 200) {
         // Handle successful submission, e.g., show a success message or redirect
-        console.log('Account holder added successfully');
-        setMessage('Account holder added successfully');
+        toast.success(`Account holder @_${formData.username} added successfully`);
       } else {
-        // Handle submission failure
-        console.error('Submission failed');
-        setMessage("Account holder can't be added");
+        toast.error('Something went wrong');
       }
     } catch (error) {
-      setMessage(`Error: ${error.message}`);
+      toast.error("Account holder couldn't be added");
     }
   };
   
@@ -135,7 +132,6 @@ const AddAccountHolder = () => {
             </div>
             <button type="submit" className="btn btn-primary">Add</button>
           </form>
-          {message && <p className="mt-3">{message}</p>}
         </div>
       </div>
     </div>

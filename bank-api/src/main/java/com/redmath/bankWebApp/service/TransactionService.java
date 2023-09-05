@@ -96,6 +96,9 @@ public class TransactionService {
     }
 
     public void transferCash(String sender, String receiver, Balance balance) {
+        AccountHolder receiverAcc = accountHolderRepo.getAccountHolderByUsername(receiver).orElse(null);
+        if(receiverAcc == null)
+            throw new IllegalStateException("Receiver not found");
         handleTransaction(sender, balance, "DB", "You" + " transferred $" + balance.getAmount() + " to @_" + receiver);
         handleTransaction(receiver, balance, "CR", "$" + balance.getAmount() + " was transferred to you by @_" + sender);
     }

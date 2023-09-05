@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import {toast} from 'react-toastify';
+
 const TransactionForm = () => {
   const [transactionType, setTransactionType] = useState('deposit');
   const [amount, setAmount] = useState('');
-  const [message, setMessage] = useState('');
 
 
   const handleSubmit = async (e) => {
@@ -30,12 +31,12 @@ const TransactionForm = () => {
       );
 
       if (response.status === 200) {
-        setMessage(`Successfully ${transactionType}ed $${amount}`);
+        toast.success(<i className='fa fa-money'></i> + `Successfully ${transactionType}ed $${amount}`);
       } else {
-        setMessage(`Failed to ${transactionType} the transaction`);
+        toast.error(`Failed to ${transactionType} the transaction`);
       }
     } catch (error) {
-      setMessage(`Error: ${error.message}`);
+      toast.error(`Failed to process this transaction`)
     }
   };
 
@@ -72,7 +73,6 @@ const TransactionForm = () => {
               Submit
             </button>
           </form>
-          {message && <p className="mt-3">{message}</p>}
         </div>
       </div>
     </div>

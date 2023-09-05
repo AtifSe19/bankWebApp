@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import {toast} from 'react-toastify';
+
 const DeleteAccountHolder = () => {
   const [username, setUsername] = useState('');
 
@@ -20,15 +22,12 @@ const DeleteAccountHolder = () => {
       });
 
       if (response.status === 200) {
-        // Handle successful deletion, e.g., show a success message or redirect
-        console.log('Account holder deleted successfully');
-        // Optionally, you can reset the form or clear the account holder data here
+        toast.success(`Account holder @_${username} deleted successfully`);
       } else {
-        // Handle deletion failure
-        console.error('Deletion failed');
+        toast.error('Something went wrong');
       }
     } catch (error) {
-      console.error('Error:', error);
+      toast.error(`Account holder with username @_${username} does not exist!`);
     }
   };
 

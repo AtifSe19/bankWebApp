@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const TransferMoney = () => {
   const [receiver, setReceiver] = useState('');
   const [amount, setAmount] = useState('');
-  const [message, setMessage] = useState('');
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,12 +25,12 @@ const TransferMoney = () => {
       );
 
       if (response.status === 200) {
-        setMessage(`Successfully transferred $${amount} to ${receiver}`);
-      } else {
-        setMessage(`Failed to transfer the amount`);
+        toast.success(`Successfully transferred $${amount} to @_${receiver}`);
+      } else{
+        toast.error('You cannot transfer money to yourself');
       }
     } catch (error) {
-      setMessage(`Error: ${error.message}`);
+      toast.error(`Something went wrong!`);
     }
   };
 
@@ -75,7 +77,8 @@ const TransferMoney = () => {
                   Send
                 </button>
               </form>
-              {message && <p className="mt-3">{message}</p>}
+
+              {/* {message && <p className="mt-3">{message}</p>} */}
             </div>
           </div>
         </div>

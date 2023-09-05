@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const UserHomePage = () => {
   const [balance, setBalance] = useState(null);
   const [username, setUsername] = useState(null);
+
+  const handleWelcome = () => {
+    toast.success(`Welcome, @_${username}! to the User dashboard`, {
+      position: toast.POSITION.TOP_CENTER,
+      });
+    }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,7 +65,7 @@ const UserHomePage = () => {
             <p>Loading balance...</p>
           )}
           <p>Here, you can manage your account, see balance, transactions history, and more.</p>
-          <button className="btn btn-primary">Welcome!</button>
+          <button className="btn btn-primary" onClick={handleWelcome}>Welcome!</button>
         </div>
       </div>
     </div>

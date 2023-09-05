@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 const BalanceHistory = () => {
   const [balanceHistory, setBalanceHistory] = useState([]);
 
@@ -42,10 +41,10 @@ const BalanceHistory = () => {
     }
 
     // Extract date components from the array
-    const [year, month, day, hour, minute, second, milliseconds] = dateArray;
+    const [year, month, day, hour, minute, second] = dateArray;
 
     // Create a Date object with the extracted components
-    const date = new Date(year, month - 1, day, hour, minute, second, milliseconds);
+    const date = new Date(year, month - 1, day, hour, minute, second);
 
     // Format the date as desired (e.g., YYYY-MM-DD HH:mm:ss)
     const formattedDate = date.toISOString().slice(0, 19).replace('T', ' ');

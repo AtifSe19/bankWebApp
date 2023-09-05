@@ -7,6 +7,7 @@ import com.redmath.bankWebApp.repo.BalanceRepo;
 import com.redmath.bankWebApp.repo.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountHolderService implements UserDetailsService {
@@ -81,15 +83,18 @@ public class AccountHolderService implements UserDetailsService {
         return accountHolderRepo.getRolesByUsername(username);
     }
 
-    public AccountHolder getAccountHolderByUsername(String name) {
-        return accountHolderRepo.getAccountHolderByUsername(name).orElse(null);
+    public ResponseEntity<AccountHolder> getAccountHolderByUsername(String name) {
+        Optional<AccountHolder> foundUser = accountHolderRepo.getAccountHolderByUsername(name);
+        return foundUser.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().body(null));
     }
 
-    public void deleteAccountHolderByUsername(String username) {
+    public ResponseEntity<Boolean> deleteAccountHolderByUsername(String username) {
 
         AccountHolder foundUser = accountHolderRepo.findByUsername(username).orElse(null);
         if(foundUser != null){
             accountHolderRepo.deleteById(foundUser.getId());
+            return ResponseEntity.ok(true);
         }
+        return ResponseEntity.badRequest().body(false);
     }
 }

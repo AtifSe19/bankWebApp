@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {toast} from 'react-toastify'
 
 const UpdateAccountHolder = () => {
   const [username, setUsername] = useState('');
@@ -27,11 +28,11 @@ const UpdateAccountHolder = () => {
       });
 
       if (response.status === 200) {
-        // Set the found account holder data
         setAccountHolder(response.data);
+        toast.success(`Account holder: @_${username} information retrieved successfully`)
       } else {
         // Handle account holder not found
-        console.error('Account holder not found');
+        toast.error("Account holder not found!");
         setAccountHolder({
           id: '',
           username: '',
@@ -42,7 +43,7 @@ const UpdateAccountHolder = () => {
         });
       }
     } catch (error) {
-      console.error('Error:', error);
+      toast.error("Account holder not found!");
     }
   };
 
@@ -62,14 +63,12 @@ const UpdateAccountHolder = () => {
       });
 
       if (response.status === 200) {
-        // Handle successful update, e.g., show a success message or redirect
-        console.log('Account holder updated successfully');
+        toast.success(`Account holder: @_${username} updated successfully`)
       } else {
-        // Handle update failure
-        console.error('Update failed');
+        toast.error('Something went wrong');
       }
     } catch (error) {
-      console.error('Error:', error);
+      toast.error("Something went wrong")
     }
   };
 

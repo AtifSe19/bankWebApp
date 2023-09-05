@@ -42,6 +42,8 @@ public class TransactionController {
     @PostMapping("/transfer")
     @PreAuthorize("hasAuthority('USER')")
     public void transferCash(Authentication sender, @RequestParam String receiver, @RequestBody Balance balance){
+        if(sender.getName().equals(receiver))
+            throw new IllegalArgumentException("You cannot transfer money to yourself");
         transactionService.transferCash(sender.getName(), receiver, balance);
     }
 }

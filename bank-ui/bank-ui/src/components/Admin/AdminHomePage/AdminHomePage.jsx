@@ -2,8 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import { toast } from 'react-toastify';
+
 const AdminHomePage = () => {
   const [username, setUsername] = useState(null);
+
+  const handleWelcome = () => {
+    toast.success(`Welcome, @_${username}! to the Admin dashboard`, {
+      position: toast.POSITION.TOP_CENTER,
+      });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +46,7 @@ const AdminHomePage = () => {
           <h1>Welcome, @_{username}!</h1>
           <p>This is the Admin dashboard of the Bank Application.</p>
           <p>Here, you can manage user accounts, transactions, and more.</p>
-          <button className="btn btn-primary">Welcome!</button>
+          <button className="btn btn-primary" onClick={handleWelcome}>Welcome!</button>
         </div>
       </div>
     </div>

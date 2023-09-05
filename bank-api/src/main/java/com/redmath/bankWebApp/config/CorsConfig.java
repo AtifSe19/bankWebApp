@@ -14,7 +14,7 @@ public class CorsConfig implements WebMvcConfigurer {
         registry
                 .addMapping("/**") // Specify the URL pattern you want to allow
                 .allowedOrigins("http://localhost:3000") // Specify the origin(s) you want to allow
-                .allowedMethods("GET", "POST", "PUT", "DELETE") // Specify the HTTP methods you want to allow
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Specify the HTTP methods you want to allow
                 .allowCredentials(true) // Allow cookies and authentication headers
                 .exposedHeaders("Authorization"); // Expose the Authorization header for the frontend
 

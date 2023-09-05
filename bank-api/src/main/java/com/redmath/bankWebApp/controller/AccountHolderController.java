@@ -3,6 +3,7 @@ package com.redmath.bankWebApp.controller;
 import com.redmath.bankWebApp.model.AccountHolder;
 import com.redmath.bankWebApp.service.AccountHolderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,8 +29,8 @@ public class AccountHolderController {
     }
     @DeleteMapping("/delete/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void deleteAccountHolder(@PathVariable String username){
-        accountHolderService.deleteAccountHolderByUsername(username);
+    public ResponseEntity<Boolean> deleteAccountHolder(@PathVariable String username){
+        return accountHolderService.deleteAccountHolderByUsername(username);
     }
 
     @PutMapping("/update/{username}")
@@ -43,15 +44,15 @@ public class AccountHolderController {
         return accountHolderService.getAllAccountHolders();
     }
 
-//    @GetMapping("/{id}")
-//    @PreAuthorize("hasAuthority('ADMIN')")
-//    public AccountHolder getAccountHolderById(@PathVariable Long id){
-//        return accountHolderService.getAccountHolderById(id);
-//    }
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public AccountHolder getAccountHolderById(@PathVariable Long id){
+        return accountHolderService.getAccountHolderById(id);
+    }
 
     @GetMapping("/getSpecAccHolder/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public AccountHolder getAccountHolderByUsername(@PathVariable String username){
+    public ResponseEntity<AccountHolder> getAccountHolderByUsername(@PathVariable String username){
         return accountHolderService.getAccountHolderByUsername(username);
     }
 

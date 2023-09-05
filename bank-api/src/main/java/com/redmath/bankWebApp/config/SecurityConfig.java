@@ -53,10 +53,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http.formLogin(formLogin->formLogin.loginPage("/login").permitAll());
                 http.formLogin(formLogin->formLogin.defaultSuccessUrl("http://localhost:3000", true).permitAll());
-        http.csrf(config -> config.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()));
+//        http.csrf(config -> config.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()));
 
         http.authorizeHttpRequests(config -> config.anyRequest().authenticated());
+        http.csrf(csrf->csrf.disable());
 //        http.cors(AbstractHttpConfigurer::disable);
         http.cors(Customizer.withDefaults());
         return http.build();
