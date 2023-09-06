@@ -1,0 +1,19 @@
+#logout{
+    background-color: red;
+    color: white;
+}
+
+#logout:hover{
+    background-color: white;
+    color: red;
+}
+
+.customBtns{
+    border: 1px solid red;
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+nav{
+    background-color: #008080;
+}

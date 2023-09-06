@@ -13,7 +13,3 @@ databaseChangeLog:
       file: db.changelog-schema-0.0.3.yaml
       relativeToChangelogFile: true
       context: local
-#  - include:
-#      file: db.changelog-sequence-0.0.1.yaml
-#      relativeToChangelogFile: true
-#      context: local

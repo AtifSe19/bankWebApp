@@ -3,12 +3,9 @@ package com.redmath.bankWebApp.service;
 import com.redmath.bankWebApp.model.AccountHolder;
 import com.redmath.bankWebApp.repo.AccountHolderRepo;
 
-import com.redmath.bankWebApp.repo.BalanceRepo;
-import com.redmath.bankWebApp.repo.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

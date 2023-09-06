@@ -3,7 +3,6 @@ package com.redmath.bankWebApp.controller;
 import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.model.Transaction;
 import com.redmath.bankWebApp.service.TransactionService;
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;

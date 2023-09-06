@@ -4,10 +4,8 @@ import com.redmath.bankWebApp.model.AccountHolder;
 import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.repo.BalanceRepo;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

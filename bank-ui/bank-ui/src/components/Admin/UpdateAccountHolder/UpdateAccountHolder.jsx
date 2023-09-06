@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {toast} from 'react-toastify'
+import './UpdateAccountHolder.css';
 
 const UpdateAccountHolder = () => {
   const [username, setUsername] = useState('');
@@ -73,7 +74,7 @@ const UpdateAccountHolder = () => {
   };
 
   return (
-    <div className='container mt-5 my-5'>
+    <div className='container mt-5 my-5 updAccHoldContainer'>
       <div className="row">
         <div className="col-md-12 text-center">
           <h1>Update Account Holder</h1>

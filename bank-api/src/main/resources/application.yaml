@@ -7,8 +7,8 @@ spring:
       password: ${bank.security.user.password}
   profiles:
     include:
-#      - dev
-      - local
+      - dev
+#      - local
   datasource:
     url: ${bank.db.url}
     username: ${bank.db.username:}

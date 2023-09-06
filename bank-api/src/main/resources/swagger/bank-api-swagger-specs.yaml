@@ -1,0 +1,288 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:9080
+    description: Generated server url
+paths:
+  /api/v1/accounts/update/{username}:
+    put:
+      tags:
+        - account-holder-controller
+      operationId: updateAccountHolder
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountHolder'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccountHolder'
+  /api/v1/transactions/withdraw:
+    post:
+      tags:
+        - transaction-controller
+      operationId: withdrawCash
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Balance'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /api/v1/transactions/transfer:
+    post:
+      tags:
+        - transaction-controller
+      operationId: transferCash
+      parameters:
+        - name: receiver
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Balance'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /api/v1/transactions/deposit:
+    post:
+      tags:
+        - transaction-controller
+      operationId: depositCash
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Balance'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /api/v1/accounts:
+    get:
+      tags:
+        - account-holder-controller
+      operationId: viewAccounts
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountHolder'
+    post:
+      tags:
+        - account-holder-controller
+      operationId: createAccountHolder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountHolder'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /api/v1/transactions/history:
+    get:
+      tags:
+        - transaction-controller
+      operationId: viewTransactionsHistory
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+  /api/v1/balance:
+    get:
+      tags:
+        - balance-controller
+      operationId: showBalance
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Balance'
+  /api/v1/balance/history:
+    get:
+      tags:
+        - balance-controller
+      operationId: findBalanceHistoryByUsername
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Balance'
+  /api/v1/balance/getUsername:
+    get:
+      tags:
+        - balance-controller
+      operationId: getUsername
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/accounts/{id}:
+    get:
+      tags:
+        - account-holder-controller
+      operationId: getAccountHolderById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccountHolder'
+  /api/v1/accounts/getSpecAccHolder/{username}:
+    get:
+      tags:
+        - account-holder-controller
+      operationId: getAccountHolderByUsername
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccountHolder'
+  /api/v1/accounts/getRoles:
+    get:
+      tags:
+        - account-holder-controller
+      operationId: getRoles
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+  /:
+    get:
+      tags:
+        - home-controller
+      operationId: welcome_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/accounts/delete/{username}:
+    delete:
+      tags:
+        - account-holder-controller
+      operationId: deleteAccountHolder
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+components:
+  schemas:
+    AccountHolder:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        roles:
+          type: string
+        address:
+          type: string
+    Balance:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        date:
+          type: string
+          format: date-time
+        amount:
+          type: integer
+          format: int64
+        db_cr_indicator:
+          type: string
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        date:
+          type: string
+          format: date-time
+        description:
+          type: string
+        amount:
+          type: integer
+          format: int64
+        db_cr_indicator:
+          type: string

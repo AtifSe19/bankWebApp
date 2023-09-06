@@ -1,0 +1,25 @@
+.accHoldContainer{
+    width: 40%;
+    padding: 20px;
+    background-color: #008080;
+    color: white;
+    border-top-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+/* .main-content{
+	width: 50%;
+	border-radius: 20px;
+	box-shadow: 0 5px 5px rgba(0,0,0,.4);
+	margin: 5em auto;
+	display: flex;
+}
+.company__info{
+	background-color: #008080;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: #fff;
+} */

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './SearchAccountHolder.css';
 
 const SearchAccountHolder = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -65,7 +66,7 @@ const SearchAccountHolder = () => {
       </div>
       <div className="row">
         <div className="col-md-12">
-          <table className="table shadow">
+          <table className="table shadow table-bg">
             <thead>
               <tr>
                 <th>#</th>

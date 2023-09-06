@@ -4,7 +4,6 @@ import com.redmath.bankWebApp.model.AccountHolder;
 import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.model.Transaction;
 import com.redmath.bankWebApp.repo.AccountHolderRepo;
-import com.redmath.bankWebApp.repo.BalanceRepo;
 import com.redmath.bankWebApp.repo.TransactionRepo;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class TransactionService {

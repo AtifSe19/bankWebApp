@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = ({ user }) => {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="#">
-                        ABC Bank
+                        Secure Bank
                     </Link>
                     <button
                         className="navbar-toggler"
@@ -80,7 +81,7 @@ const Navbar = ({ user }) => {
                         </ul>
 
                         {/* <li className="nav-item"> */}
-                            <Link className="nav-link" to="http://localhost:9080/logout " style={{color: "white"}}>
+                            <Link className="nav-link customBtns" to="http://localhost:9080/logout " id='logout'>
                                 Logout
                             </Link>
                         {/* </li> */}

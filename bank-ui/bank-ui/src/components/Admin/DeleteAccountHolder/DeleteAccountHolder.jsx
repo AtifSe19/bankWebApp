@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import './DeleteAccountHolder.css';
 import {toast} from 'react-toastify';
 
 const DeleteAccountHolder = () => {
@@ -32,7 +32,7 @@ const DeleteAccountHolder = () => {
   };
 
   return (
-    <div className='container mt-5 my-5'>
+    <div className='container mt-5 my-5 delAccHoldContainer'>
       <div className="row">
         <div className="col-md-12 text-center">
           <h1>Delete Account Holder</h1>

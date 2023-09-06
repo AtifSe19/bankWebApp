@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {toast} from 'react-toastify';
+import './AddAccountHolder.css';
 
 const AddAccountHolder = () => {
   const [formData, setFormData] = useState({
@@ -49,7 +50,7 @@ const AddAccountHolder = () => {
   
 
   return (
-    <div className='container mt-5 my-5'>
+    <div className='container mt-5 my-5 accHoldContainer'>
       <div className="row">
         <div className="col-md-12 text-center">
           <h1>Add Account Holder</h1>

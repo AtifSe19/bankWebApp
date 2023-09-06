@@ -37,13 +37,21 @@
   }
 }
 
-/* body {
-  background-image: url('../public/images/bg.png');
+/* body { */
+  /* background-image: url('../public/images/bg.png'); */
+  /* make the image little bit transition and blurred */
+  /* background-position: center;
+  background-attachment: fixed;
+
+  background-color: #282c34;
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
-  min-height: 100vh; /* Ensures the background covers the entire viewport height */
-  /* margin: 0; Remove default body margin */
-  /* padding: 0; Remove default body padding */
+  min-height: 100vh;
+  margin: 0; 
+  padding: 0; 
+  font-family: "Open Sans", sans-serif; */
+  /* color: #212529; */
 /* }  */
+
 
