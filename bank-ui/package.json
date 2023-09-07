@@ -2,12 +2,8 @@
   "name": "bank-ui",
   "version": "0.1.0",
   "private": true,
-  "copy-libs": "cpx node_modules/{bootstrap/dist}/**/* src/lib -u -C",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.2",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@popperjs/core": "^2.11.8",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -24,6 +20,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "postinstall": "npm run copy-libs",
+    "copy-libs": "cpx node_modules/bootstrap/dist/**/* src/lib -u -C",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -48,7 +46,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/core": "^7.22.15",
     "cpx": "^1.5.0"
   }
 }

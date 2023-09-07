@@ -21,7 +21,7 @@ const UpdateAccountHolder = () => {
   const handleSearch = async () => {
     try {
       // Send a request to search for the account holder by username
-      const response = await axios.get(`http://localhost:9080/api/v1/accounts/getSpecAccHolder/${username}`, {
+      const response = await axios.get(`http://localhost:9080/api/v1/accounts/${username}`, {
         withCredentials: true,
         headers: {
           'Authorization': 'Basic ' + btoa('admin:admin'),
@@ -55,7 +55,7 @@ const UpdateAccountHolder = () => {
       // Exclude 'id', 'username', and 'password' from the data to be sent
       const { id, username, password, roles, ...dataToSend } = accountHolder;
 
-      const response = await axios.put(`http://localhost:9080/api/v1/accounts/update/${username}`, dataToSend, {
+      const response = await axios.put(`http://localhost:9080/api/v1/accounts/${username}`, dataToSend, {
         withCredentials: true,
         headers: {
           'Authorization': 'Basic ' + btoa('admin:admin'),

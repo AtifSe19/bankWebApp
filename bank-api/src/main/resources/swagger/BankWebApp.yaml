@@ -1,12 +1,29 @@
 openapi: 3.0.1
 info:
-  title: OpenAPI definition
+  title: OpenAPI definition for my BankWebApp
   version: v0
 servers:
   - url: http://localhost:9080
     description: Generated server url
 paths:
-  /api/v1/accounts/update/{username}:
+  /api/v1/accounts/{username}:
+    get:
+      tags:
+        - account-holder-controller
+      operationId: getAccountHolderByUsername
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccountHolder'
     put:
       tags:
         - account-holder-controller
@@ -30,6 +47,23 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/AccountHolder'
+    delete:
+      tags:
+        - account-holder-controller
+      operationId: deleteAccountHolder
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
   /api/v1/transactions/withdraw:
     post:
       tags:
@@ -145,10 +179,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Balance'
-  /api/v1/balance/getUsername:
+  /api/v1/accounts/getUsername:
     get:
       tags:
-        - balance-controller
+        - account-holder-controller
       operationId: getUsername
       responses:
         '200':
@@ -157,43 +191,6 @@ paths:
             '*/*':
               schema:
                 type: string
-  /api/v1/accounts/{id}:
-    get:
-      tags:
-        - account-holder-controller
-      operationId: getAccountHolderById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AccountHolder'
-  /api/v1/accounts/getSpecAccHolder/{username}:
-    get:
-      tags:
-        - account-holder-controller
-      operationId: getAccountHolderByUsername
-      parameters:
-        - name: username
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AccountHolder'
   /api/v1/accounts/getRoles:
     get:
       tags:
@@ -220,24 +217,25 @@ paths:
             '*/*':
               schema:
                 type: string
-  /api/v1/accounts/delete/{username}:
-    delete:
+  /login:
+    post:
       tags:
-        - account-holder-controller
-      operationId: deleteAccountHolder
-      parameters:
-        - name: username
-          in: path
-          required: true
-          schema:
-            type: string
+        - login-endpoint
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
       responses:
         '200':
           description: OK
-          content:
-            '*/*':
-              schema:
-                type: boolean
+        '403':
+          description: Forbidden
 components:
   schemas:
     AccountHolder:

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -19,25 +18,21 @@ public class TransactionController {
     public TransactionController(TransactionService transactionService){
         this.transactionService = transactionService;
     }
-
     @GetMapping("/history")
     @PreAuthorize("hasAuthority('USER')")
     public List<Transaction> viewTransactionsHistory(Authentication auth){
         return transactionService.viewTransactionsHistory(auth.getName());
     }
-
     @PostMapping("/deposit")
     @PreAuthorize("hasAuthority('USER')")
     public void depositCash(Authentication auth, @RequestBody Balance balance){
         transactionService.depositCash(auth.getName(), balance);
     }
-
     @PostMapping("/withdraw")
     @PreAuthorize("hasAuthority('USER')")
     public void withdrawCash(Authentication auth, @RequestBody Balance balance){
         transactionService.withdrawCash(auth.getName(), balance);
     }
-
     @PostMapping("/transfer")
     @PreAuthorize("hasAuthority('USER')")
     public void transferCash(Authentication sender, @RequestParam String receiver, @RequestBody Balance balance){

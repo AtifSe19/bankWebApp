@@ -1,7 +1,10 @@
-bank:
+bankWebApp:
   db:
     url: jdbc:h2:mem:myBank
 #    username: admin
 #    password: admin
   liquibase:
     contexts: local
+
+springdoc:
+  show-login-endpoint: true

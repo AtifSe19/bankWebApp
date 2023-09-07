@@ -17,7 +17,7 @@ const AdminHomePage = () => {
     const fetchData = async () => {
       try {
         const [usernameResponse] = await Promise.all([
-          axios.get(`http://localhost:9080/api/v1/balance/getUsername`, {
+          axios.get(`http://localhost:9080/api/v1/accounts/getUsername`, {
             withCredentials: true,
             headers: {
               'Authorization': 'Basic ' + btoa('admin:admin'),

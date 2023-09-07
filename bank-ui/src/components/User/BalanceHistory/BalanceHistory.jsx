@@ -40,12 +40,9 @@ const BalanceHistory = () => {
       return 'Invalid Date';
     }
 
-    // Extract date components from the array
     const [year, month, day, hour, minute, second] = dateArray;
-
-    // Create a Date object with the extracted components
     const date = new Date(year, month - 1, day, hour, minute, second);
-
+    
     // Format the date as desired (e.g., YYYY-MM-DD HH:mm:ss)
     const formattedDate = date.toISOString().slice(0, 19).replace('T', ' ');
 

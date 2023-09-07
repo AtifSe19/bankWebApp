@@ -19,19 +19,17 @@ public class AccountHolderController {
     public AccountHolderController(AccountHolderService accountHolderService){
         this.accountHolderService = accountHolderService;
     }
-
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public void createAccountHolder(@RequestBody AccountHolder user){
         accountHolderService.createAccountHolder(user);
     }
-    @DeleteMapping("/delete/{username}")
+    @DeleteMapping("/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Boolean> deleteAccountHolder(@PathVariable String username){
         return accountHolderService.deleteAccountHolderByUsername(username);
     }
-
-    @PutMapping("/update/{username}")
+    @PutMapping("/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public AccountHolder updateAccountHolder(@PathVariable String username, @RequestBody AccountHolder accountHolder){
         return accountHolderService.updateAccountHolder(username, accountHolder);
@@ -41,14 +39,7 @@ public class AccountHolderController {
     public List<AccountHolder> viewAccounts(){
         return accountHolderService.getAllAccountHolders();
     }
-
-    @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public AccountHolder getAccountHolderById(@PathVariable Long id){
-        return accountHolderService.getAccountHolderById(id);
-    }
-
-    @GetMapping("/getSpecAccHolder/{username}")
+    @GetMapping("/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<AccountHolder> getAccountHolderByUsername(@PathVariable String username){
         return accountHolderService.getAccountHolderByUsername(username);
@@ -59,6 +50,11 @@ public class AccountHolderController {
     public List<String> getRoles(Authentication auth){
         return accountHolderService.getRolesByUsername(auth.getName());
     }
+    @GetMapping("/getUsername")
+    public String getUsername(Authentication auth){
+        return auth.getName();
+    }
+
 
 
 

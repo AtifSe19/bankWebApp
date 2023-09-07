@@ -15,7 +15,6 @@ const UserHomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Replace 'userId' with the actual identifier for the logged-in user
         const [balanceResponse, usernameResponse] = await Promise.all([
           axios.get(`http://localhost:9080/api/v1/balance`, {
             withCredentials: true,
@@ -23,7 +22,7 @@ const UserHomePage = () => {
               'Authorization': 'Basic ' + btoa('admin:admin'),
             },
           }),
-          axios.get(`http://localhost:9080/api/v1/balance/getUsername`, {
+          axios.get(`http://localhost:9080/api/v1/accounts/getUsername`, {
             withCredentials: true,
             headers: {
               'Authorization': 'Basic ' + btoa('admin:admin'),
