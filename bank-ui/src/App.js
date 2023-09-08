@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './lib/css/bootstrap.min.css';
-import './lib/js/bootstrap.min.js';
+// import './lib/js/bootstrap.min.js';
 import AdminPanel from './pages/Admin/AdminPanel/AdminPanel';
 import UserPanel from './pages/User/UserPanel/UserPanel';
 import Navbar from './components/Navbar/Navbar';

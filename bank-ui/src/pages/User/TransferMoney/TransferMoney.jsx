@@ -77,8 +77,6 @@ const TransferMoney = () => {
                   Send
                 </button>
               </form>
-
-              {/* {message && <p className="mt-3">{message}</p>} */}
             </div>
           </div>
         </div>
