@@ -62,11 +62,6 @@ public class AccountHolderControllerTest {
                         .content("{\"username\":\"user100\",\"password\":\"123\",\"email\":\"test100@gmail.com\",\"address\":\"Lahore\",\"roles\":\"USER\"}"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.content.username", Matchers.is("user")))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.content.password", Matchers.is("123")))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.content.email", Matchers.is("test@gmail.com")))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.content.address", Matchers.is("Lahore")))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.content.roles", Matchers.is("USER")));
     }
 
     @Test

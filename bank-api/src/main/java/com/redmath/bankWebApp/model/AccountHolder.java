@@ -10,7 +10,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "account_holder")
+@Table(name = "account_holders")
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
@@ -31,11 +31,11 @@ public class AccountHolder {
     @NotNull
     private String address;
 
-    @OneToMany(mappedBy = "accountHolder", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "accountHolders", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Transaction> transactions;
 
-    @OneToMany(mappedBy = "accountHolder", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "accountHolders", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Balance> balances;
 }

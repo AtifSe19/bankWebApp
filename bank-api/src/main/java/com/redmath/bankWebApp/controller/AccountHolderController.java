@@ -44,7 +44,6 @@ public class AccountHolderController {
     public ResponseEntity<AccountHolder> getAccountHolderByUsername(@PathVariable String username){
         return accountHolderService.getAccountHolderByUsername(username);
     }
-
     @GetMapping("/getRoles")
 
     public List<String> getRoles(Authentication auth){
@@ -54,18 +53,4 @@ public class AccountHolderController {
     public String getUsername(Authentication auth){
         return auth.getName();
     }
-
-
-
-
-
-
-//    hasRole vs hasAuthority
-
-//    if you use hasRole, then you have to mention the role as ROLE_USER (prefixing the role with ROLE) in the db, you can also mention the role as
-//    ROLE_USER in the bracket of the hasRole, but writing ROLE_USER for the hasRole in the db is mandatory.
-
-//    if you use hasAuthority, then it is not mandatory to have the role as ROLE_USER, you can simply define it as USER, but
-//    the name and format of the role in the hasAuthority bracket and the db should match.
-
 }

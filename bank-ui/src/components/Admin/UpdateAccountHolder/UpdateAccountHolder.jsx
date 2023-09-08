@@ -152,7 +152,7 @@ const UpdateAccountHolder = () => {
                 onChange={(e) => setAccountHolder({ ...accountHolder, address: e.target.value })}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">Update</button>
+            <button type="submit" className="btn btn-primary btns">Update</button>
           </form>
         </div>
       </div>

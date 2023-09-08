@@ -4,12 +4,12 @@ databaseChangeLog:
       author: ATIF IQBAL BUTT
       changes:
         - createTable:
-            tableName: account_holder
+            tableName: account_holders
             columns:
               - column:
                   name: id
-                  type: BIGINT  # Use BIGINT for H2
-                  autoIncrement: true  # H2 auto-increment
+                  type: BIGINT
+                  autoIncrement: true
               - column:
                   name: username
                   type: VARCHAR(255)
@@ -27,12 +27,18 @@ databaseChangeLog:
                   type: VARCHAR(255)
 
         - addPrimaryKey:
-            tableName: account_holder
+            tableName: account_holders
             columnNames: id
         - addUniqueConstraint:
-            tableName: account_holder
+            tableName: account_holders
             columnNames: username
         - addUniqueConstraint:
-            tableName: account_holder
+            tableName: account_holders
             columnNames: email
+        - createIndex:
+            tableName: account_holders
+            indexName: account_holders_ix_01
+            columns:
+              - column:
+                  name: username
 

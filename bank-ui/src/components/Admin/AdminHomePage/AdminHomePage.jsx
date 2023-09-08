@@ -46,7 +46,7 @@ const AdminHomePage = () => {
           <h1>Welcome, @_{username}!</h1>
           <p>This is the Admin dashboard of the Bank Application.</p>
           <p>Here, you can manage manage user accounts and more.</p>
-          <button className="btn btn-primary" onClick={handleWelcome}>Welcome!</button>
+          <button className="btn btn-primary" onClick={handleWelcome} style={{border: "1px solid #008080"}}>Welcome!</button>
         </div>
       </div>
     </div>

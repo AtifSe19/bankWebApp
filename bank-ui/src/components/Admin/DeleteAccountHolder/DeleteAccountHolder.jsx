@@ -47,7 +47,7 @@ const DeleteAccountHolder = () => {
               <input type="text" className="form-control" id="username" value={username}
                 onChange={handleChange} />
             </div>
-            <button type="submit" className="btn btn-danger">Delete</button>
+            <button id='delBtn' type="submit" className="btn btn-danger">Delete</button>
           </form>
 
         </div>

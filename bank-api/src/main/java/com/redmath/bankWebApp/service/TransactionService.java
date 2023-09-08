@@ -5,7 +5,6 @@ import com.redmath.bankWebApp.model.Balance;
 import com.redmath.bankWebApp.model.Transaction;
 import com.redmath.bankWebApp.repo.AccountHolderRepo;
 import com.redmath.bankWebApp.repo.TransactionRepo;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,7 @@ public class TransactionService {
         this.balanceService = balanceService;
         this.accountHolderRepo = accountHolderRepo;
     }
-    public void createTransaction(@NotNull AccountHolder foundUser, @NotNull Balance balance, @NotNull String transType, String description){
+    public void createTransaction(AccountHolder foundUser,Balance balance,String transType, String description){
 
         Transaction transaction = new Transaction();
         transaction.setDate(LocalDateTime.now());
@@ -36,16 +35,16 @@ public class TransactionService {
         transaction.setDb_cr_indicator(transType);
         transaction.setAmount(balance.getAmount());
         foundUser.getTransactions().add(transaction);
-        transaction.setAccountHolder(foundUser);
+        transaction.setAccountHolders(foundUser);
         transactionRepo.save(transaction);
 
     }
 
     public List<Transaction> viewTransactionsHistory(String username){
-        return transactionRepo.findTransactionByAccountHolderUsername(username);
+        return transactionRepo.findTransactionByAccountHoldersUsername(username);
     }
 
-    private static boolean isTransactionValid(Long currBal, Long amount, @NotNull String transType){
+    private static boolean isTransactionValid(Long currBal, Long amount, String transType){
 
         if(transType.equals("DB"))
         {
@@ -58,7 +57,7 @@ public class TransactionService {
         return false;
     }
 
-    private void validateTransaction(@NotNull Balance foundAccLatestBalRec, Long amount, String transType, Boolean toUpdate){
+    private void validateTransaction(Balance foundAccLatestBalRec, Long amount, String transType, Boolean toUpdate){
         if(!isTransactionValid(foundAccLatestBalRec.getAmount(), amount, transType)){
             throw new IllegalStateException("Insufficient funds");
         }
@@ -66,7 +65,7 @@ public class TransactionService {
         if(toUpdate)
             balanceService.updateBalance(foundAccLatestBalRec, amount, transType);
         else
-            balanceService.createBalance(foundAccLatestBalRec.getAccountHolder(), amount, transType);
+            balanceService.createBalance(foundAccLatestBalRec.getAccountHolders(), amount, transType);
     }
 
 

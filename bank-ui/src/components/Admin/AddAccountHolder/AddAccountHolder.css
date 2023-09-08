@@ -7,6 +7,17 @@
 	border-bottom-right-radius: 20px;
 }
 
+#addBtn{
+	color: white;
+	background-color: #008080;
+	border: 1px solid white;
+}
+
+#addBtn:hover{
+	color: #008080;
+	background-color: white;
+}
+
 /* .main-content{
 	width: 50%;
 	border-radius: 20px;

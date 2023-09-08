@@ -4,7 +4,7 @@ databaseChangeLog:
       author: ATIF IQBAL BUTT
       changes:
         - insert:
-            tableName: account_holder
+            tableName: account_holders
             columns:
               - column:
                   name: username

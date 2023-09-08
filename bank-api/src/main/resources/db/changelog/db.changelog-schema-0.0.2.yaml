@@ -4,7 +4,7 @@ databaseChangeLog:
       author: ATIF IQBAL BUTT
       changes:
         - createTable:
-            tableName: balance
+            tableName: balances
             columns:
               - column:
                   name: id
@@ -24,11 +24,17 @@ databaseChangeLog:
                   type: BIGINT
 
         - addPrimaryKey:
-            tableName: balance
+            tableName: balances
             columnNames: id
         - addForeignKeyConstraint:
-            baseTableName: balance
+            baseTableName: balances
             baseColumnNames: fk_account_holder_id
-            referencedTableName: account_holder
+            referencedTableName: account_holders
             referencedColumnNames: id
-            constraintName: fk_balance_account_holder
+            constraintName: fk_balances_account_holders
+        - createIndex:
+            tableName: balances
+            indexName: balances_ix_01
+            columns:
+              - column:
+                  name: fk_account_holder_id

@@ -14,7 +14,7 @@ const AdminPanel = () => {
             <Route path="/delAccHolder" element={<DeleteAccountHolder />} />
             <Route path="/updAccHolder" element={<UpdateAccountHolder />} />
             <Route exact path="/searchAccHolder" element={<SearchAccountHolder />} />
-            <Route path = "/login" element = {<Login />} />
+            {/* <Route path = "/login" element = {<Login />} /> */}
         </Routes>
     )
 }

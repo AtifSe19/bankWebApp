@@ -131,7 +131,7 @@ const AddAccountHolder = () => {
                 onChange={handleChange}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">Add</button>
+            <button id='addBtn' type="submit" className="btn btn-primary">Add</button>
           </form>
         </div>
       </div>

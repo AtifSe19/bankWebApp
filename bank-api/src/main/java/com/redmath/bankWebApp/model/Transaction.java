@@ -10,7 +10,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "transaction")
+@Table(name = "transactions")
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
@@ -30,5 +30,5 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name = "fk_account_holder_id", nullable = false)
     @JsonIgnore
-    private AccountHolder accountHolder;
+    private AccountHolder accountHolders;
 }

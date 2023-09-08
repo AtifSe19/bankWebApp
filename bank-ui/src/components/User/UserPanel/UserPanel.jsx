@@ -15,7 +15,7 @@ const UserPanel = () => {
             <Route path="/balHistory" element={<BalanceHistory />} />
             <Route path="/transHistory" element={<TransactionHistory />} />
             <Route path = "/transaction" element = {<Transaction />} />
-            <Route path = "/login" element = {<Login />} />
+            {/* <Route path = "/login" element = {<Login />} /> */}
         </Routes>
     )
 }

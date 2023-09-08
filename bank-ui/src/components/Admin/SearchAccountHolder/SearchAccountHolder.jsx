@@ -59,7 +59,7 @@ const SearchAccountHolder = () => {
               onChange={handleSearchInputChange}
             />
             <div className="input-group-append">
-              <button className="btn btn-primary" onClick={handleSearch}>Search</button>
+              <button id='searchBtn' className="btn btn-primary" onClick={handleSearch}>Search</button>
             </div>
           </div>
         </div>

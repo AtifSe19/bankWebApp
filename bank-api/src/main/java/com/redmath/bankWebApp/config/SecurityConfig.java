@@ -19,42 +19,23 @@ import java.util.Arrays;
 @EnableMethodSecurity
 @Configuration
 public class SecurityConfig {
-
-
-
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
 
         return web -> web.ignoring().requestMatchers(
-                new AntPathRequestMatcher("/", "GET"),
-                new AntPathRequestMatcher("/actuator", "GET"),
-                new AntPathRequestMatcher("/actuator/**","GET"),
-                new AntPathRequestMatcher("/static/**","GET"),
-                new AntPathRequestMatcher("/static/**","POST"),
                 new AntPathRequestMatcher("/h2-console/**", "GET"),
                 new AntPathRequestMatcher("/h2-console/**", "POST")
-//                new AntPathRequestMatcher("/api/v1/balance/**","GET")
-//                new AntPathRequestMatcher("/api/v1/transactions/**","POST")
-//                new AntPathRequestMatcher("/api/v1/accounts/**","GET")
-//                new AntPathRequestMatcher("/api/v1/transactions/**","GET"),
-//                new AntPathRequestMatcher("/api/v1/transactions/**","POST")
         );
     }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                http.formLogin(formLogin->formLogin.defaultSuccessUrl("http://localhost:3000", true).permitAll());
+        http.formLogin(formLogin->formLogin.defaultSuccessUrl("http://localhost:3000", true).permitAll());
         http.csrf(config -> config.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()));
-
         http.authorizeHttpRequests(config -> config.anyRequest().authenticated());
-//        http.csrf(csrf->csrf.disable());
-
         http.cors(Customizer.withDefaults());
         return http.build();
     }
-
-
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -62,10 +43,8 @@ public class SecurityConfig {
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(true);
         configuration.addAllowedHeader("*");
-
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-
         return source;
     }
 }

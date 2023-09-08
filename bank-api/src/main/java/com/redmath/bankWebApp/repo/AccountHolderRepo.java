@@ -13,10 +13,10 @@ public interface AccountHolderRepo extends JpaRepository<AccountHolder, Long> {
 
     Optional<AccountHolder> findByUsername(String username);
 
-    @Query(value = "SELECT roles FROM account_holder WHERE username = ?1", nativeQuery = true)
+    @Query(value = "SELECT roles FROM account_holders WHERE username = ?1", nativeQuery = true)
     List<String> getRolesByUsername(String username);
 
-    @Query(value = "SELECT * FROM account_holder WHERE username = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM account_holders WHERE username = ?1", nativeQuery = true)
     Optional<AccountHolder> getAccountHolderByUsername(String name);
 
 }

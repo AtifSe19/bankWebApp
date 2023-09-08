@@ -10,7 +10,7 @@ import lombok.NonNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "balance")
+@Table(name = "balances")
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
@@ -27,6 +27,6 @@ public class Balance {
     @ManyToOne
     @JoinColumn(name = "fk_account_holder_id", nullable = false)
     @JsonIgnore
-    private AccountHolder accountHolder;
+    private AccountHolder accountHolders;
 
 }

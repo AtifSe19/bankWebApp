@@ -46,7 +46,7 @@ public class BalanceService {
         bal.setDate(LocalDateTime.now());
         bal.setDb_cr_indicator(transType);
 
-        bal.setAccountHolder(user);
+        bal.setAccountHolders(user);
         balanceRepo.save(bal);
     }
 

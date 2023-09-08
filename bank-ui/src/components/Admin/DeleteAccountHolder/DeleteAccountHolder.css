@@ -3,7 +3,17 @@
     color: white;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    padding: 20px;
+    padding: 20px; 
+}
 
-    
+
+#delBtn{
+	color: white;
+	background-color: red;
+	/* border: 1px solid white; */
+}
+
+#delBtn:hover{
+	color: red;
+	background-color: white;
 }
