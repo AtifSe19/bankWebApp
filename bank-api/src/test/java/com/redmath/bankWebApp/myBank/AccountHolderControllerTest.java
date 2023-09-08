@@ -66,13 +66,13 @@ public class AccountHolderControllerTest {
 
     @Test
     public void testAccountHolderDelete() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/accounts/delete/atif")
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/accounts/atif")
                         .with(testUser("user", "USER"))
                         .with(SecurityMockMvcRequestPostProcessors.csrf()))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isForbidden());
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/accounts/delete/user4")
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/accounts/user4")
                         .with(testUser("admin", "ADMIN"))
                 .with(SecurityMockMvcRequestPostProcessors.csrf()))
                 .andDo(MockMvcResultHandlers.print())

@@ -5,7 +5,7 @@ import DeleteAccountHolder from '../DeleteAccountHolder/DeleteAccountHolder';
 import UpdateAccountHolder from '../UpdateAccountHolder/UpdateAccountHolder';
 import SearchAccountHolder from '../SearchAccountHolder/SearchAccountHolder';
 import AdminHomePage from '../AdminHomePage/AdminHomePage';
-import Login from '../../Login/Login';
+import Logout from '../../Logout/Logout';
 const AdminPanel = () => {
     return (
         <Routes>
@@ -14,7 +14,7 @@ const AdminPanel = () => {
             <Route path="/delAccHolder" element={<DeleteAccountHolder />} />
             <Route path="/updAccHolder" element={<UpdateAccountHolder />} />
             <Route exact path="/searchAccHolder" element={<SearchAccountHolder />} />
-            {/* <Route path = "/login" element = {<Login />} /> */}
+            <Route path = "/logout" element = {<Logout />} />
         </Routes>
     )
 }
