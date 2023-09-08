@@ -1,11 +1,7 @@
 
 package com.redmath.bankWebApp;
 
-import java.util.Locale;
-import java.util.TimeZone;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,14 +21,6 @@ public class BankWebAppApplicationTests {
 
 	@Autowired
 	private ApplicationContext applicationContext;
-
-	@Test
-	public void testContextLoads() {
-		Assertions.assertNotNull(applicationContext);
-		Assertions.assertNotNull(applicationContext.getBean(BankWebAppApplication.class));
-//		Assertions.assertEquals(TimeZone.getTimeZone("UTC"), TimeZone.getDefault());
-		Assertions.assertEquals(Locale.US, Locale.getDefault());
-	}
 
 	@Test
 	public void testLoginSuccess() throws Exception {

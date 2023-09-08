@@ -99,7 +99,6 @@ const AddAccountHolder = () => {
                 name="roles"
                 id="admin"
                 value="admin"
-                checked={formData.roles === 'admin'}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="admin">
@@ -113,7 +112,7 @@ const AddAccountHolder = () => {
                 name="roles"
                 id="user"
                 value="user"
-                checked={formData.roles === 'user'}
+                checked="true"
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="user">

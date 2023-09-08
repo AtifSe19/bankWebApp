@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './lib/css/bootstrap.min.css';
-import AdminPanel from './components/Admin/AdminPanel/AdminPanel';
-import UserPanel from './components/User/UserPanel/UserPanel';
+import './lib/js/bootstrap.min.js';
+import AdminPanel from './pages/Admin/AdminPanel/AdminPanel';
+import UserPanel from './pages/User/UserPanel/UserPanel';
 import Navbar from './components/Navbar/Navbar';
-import 'font-awesome/css/font-awesome.min.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
@@ -40,10 +40,18 @@ function App() {
 
   return (
     <Router>
-      <Navbar user={user} />
+      {/* <Navbar user={user} />
       {user && user.role === 'admin' ? (
         <AdminPanel />
       ) : (
+        <UserPanel />
+      )} */}
+
+      <Navbar user={user} />
+      {user && user.role === 'admin' && (
+        <AdminPanel />
+      )}  
+      {user && user.role === 'user' &&(
         <UserPanel />
       )}
     </Router>

@@ -116,7 +116,7 @@ const UpdateAccountHolder = () => {
                 id="username"
                 name="username"
                 value={accountHolder.username}
-                disabled // This disables the input field
+                disabled
               />
             </div>
             <div className="mb-3">
@@ -138,7 +138,7 @@ const UpdateAccountHolder = () => {
                 id="roles"
                 name="roles"
                 value={accountHolder.roles}
-                disabled // This disables the input field
+                disabled
               />
             </div>
             <div className="mb-3">

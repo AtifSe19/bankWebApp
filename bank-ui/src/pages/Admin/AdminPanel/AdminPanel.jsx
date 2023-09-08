@@ -5,7 +5,7 @@ import DeleteAccountHolder from '../DeleteAccountHolder/DeleteAccountHolder';
 import UpdateAccountHolder from '../UpdateAccountHolder/UpdateAccountHolder';
 import SearchAccountHolder from '../SearchAccountHolder/SearchAccountHolder';
 import AdminHomePage from '../AdminHomePage/AdminHomePage';
-import Logout from '../../Logout/Logout';
+import Logout from '../../../components/Logout/Logout';
 const AdminPanel = () => {
     return (
         <Routes>
