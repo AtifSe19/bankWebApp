@@ -33,22 +33,34 @@ const TransactionHistory = () => {
   }, []);
 
   // Function to format the timestamp
-  const formatDate = (dateArray) => {
-    if (!Array.isArray(dateArray) || dateArray.length !== 7) {
+  const formatDate = (dateString) => {
+    try {
+      const [year, month, day, hour, minute, second] = dateString.split(/\D/);
+      const date = new Date(year, month - 1, day, hour, minute, second);
+  
+      if (isNaN(date.getTime())) {
+        return 'Invalid Date';
+      }
+
+      const options = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true, // Use 24-hour format
+      };
+  
+      const formattedDate = date.toLocaleString(undefined, options);
+  
+      return formattedDate;
+    } catch (error) {
+      console.error('Error parsing date:', error);
       return 'Invalid Date';
     }
-
-    // Extract date components from the array
-    const [year, month, day, hour, minute, second] = dateArray;
-
-    // Create a Date object with the extracted components
-    const date = new Date(year, month - 1, day, hour, minute, second);
-
-    // Format the date as desired (e.g., YYYY-MM-DD HH:mm:ss)
-    const formattedDate = date.toISOString().slice(0, 19).replace('T', ' ');
-
-    return formattedDate;
   };
+  
 
   return (
     <div className="container mt-5 my-3 text-center">
