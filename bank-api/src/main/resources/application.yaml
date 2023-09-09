@@ -16,7 +16,7 @@ spring:
   liquibase:
     contexts: ${bankWebApp.liquibase.contexts:}
   h2:
-    console:
+    console:  
       enabled: true
   jpa:
     hibernate:
