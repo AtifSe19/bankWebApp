@@ -13,7 +13,7 @@ databaseChangeLog:
               - column:
                   name: date
                   type: DATE
-                  defaultValueComputed: current_date()
+                  defaultValueComputed: 'current_date'
               - column:
                   name: amount
                   type: BIGINT  # Use BIGINT for H2
