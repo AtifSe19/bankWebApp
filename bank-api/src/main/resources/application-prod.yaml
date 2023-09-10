@@ -1,0 +1,8 @@
+bankWebApp:
+  db:
+    url: jdbc:postgresql://localhost:5432/myBank
+    username: postgres
+    password: 123
+
+  liquibase:
+    contexts: prod

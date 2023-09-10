@@ -1,7 +1,8 @@
 
 package com.redmath.bankWebApp;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,13 +24,20 @@ public class BankWebAppApplicationTests {
 	private ApplicationContext applicationContext;
 
 	@Test
+	public void testContextLoads() {
+		Assertions.assertNotNull(applicationContext);
+		Assertions.assertNotNull(applicationContext.getBean(BankWebAppApplication.class));
+	}
+
+	@Test
 	public void testLoginSuccess() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.post("/login")
-						.param("username", "atif")
-						.param("password", "123")
+						.param("username", "admin")
+						.param("password", "admin")
 						.with(SecurityMockMvcRequestPostProcessors.csrf()))
 				.andDo(MockMvcResultHandlers.print())
-				.andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+				.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+				.andExpect(MockMvcResultMatchers.header().string("Location", "http://localhost:3000/"));
 	}
 
 	@Test

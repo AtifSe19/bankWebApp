@@ -21,3 +21,42 @@ databaseChangeLog:
               - column:
                   name: address
                   value: 'Lahore, Pakistan'
+
+        - insert:
+            tableName: account_holders
+            columns:
+              - column:
+                  name: username
+                  value: 'atif'
+              - column:
+                  name: email
+                  value: 'atif@example.com'
+              - column:
+                  name: password
+                  value: '$2a$12$m9QUXZezXJywHWnc07nUN.VZPb8FTjSaNbREe.wehE2dgDrn2FF5S' # Password: atif
+              - column:
+                  name: roles
+                  value: 'USER'
+              - column:
+                  name: address
+                  value: 'Lahore, Pakistan'
+
+        - insert:
+            tableName: account_holders
+            columns:
+              - column:
+                  name: username
+                  value: 'user'
+              - column:
+                  name: email
+                  value: 'user@example.com'
+              - column:
+                  name: password
+                  value: '$2a$12$Gq.wrCfP8P9xbDmP2Bd0suBwytPS7FhAxoTNxS5wjv/RUrjjT/oJm' # Password: user
+              - column:
+                  name: roles
+                  value: 'USER'
+              - column:
+                  name: address
+                  value: 'Lahore, Pakistan'
+

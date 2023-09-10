@@ -47,6 +47,8 @@ public class BalanceService {
         bal.setDb_cr_indicator(transType);
 
         bal.setAccountHolders(user);
+        user.getBalances().add(bal);
+
         balanceRepo.save(bal);
     }
 

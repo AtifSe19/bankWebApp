@@ -12,7 +12,8 @@ databaseChangeLog:
                   autoIncrement: true  # H2 auto-increment
               - column:
                   name: date
-                  type: TIMESTAMP
+                  type: DATE
+                  defaultValueComputed: current_date()
               - column:
                   name: amount
                   type: BIGINT  # Use BIGINT for H2

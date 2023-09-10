@@ -16,16 +16,16 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AccountHolderControllerTest {
+public class TransactionControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testAccountHolder() throws Exception {
-        testAccountHolderGet();
-        testAccountHolderPost();
-        testAccountHolderDelete();
+    public void testTransaction() throws Exception {
+        testTransactionDeposit();
+        testTransactionWithdraw();
+        testTransactionTransfer();
     }
     @Test
     public void testAccountHolderGet() throws Exception {
@@ -51,43 +51,65 @@ public class AccountHolderControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
-
     @Test
-    public void testAccountHolderPost() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/accounts")
+    public void testTransactionDeposit() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/transactions/deposit")
                         .with(testUser("atif", "USER"))
                         .with(SecurityMockMvcRequestPostProcessors.csrf())
                         .contentType("application/json")
-                        .content("{\"username\":\"user2\",\"password\":\"123\",\"email\":\"test2@gmail.com\",\"address\":\"Lahore\",\"roles\":\"USER\"}"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
-
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/accounts")
-                        .with(testUser("atif", "ADMIN"))
-                        .with(SecurityMockMvcRequestPostProcessors.csrf())
-                        .contentType("application/json")
-                        .content("{\"username\":\"user100\",\"password\":\"123\",\"email\":\"test100@gmail.com\",\"address\":\"Lahore\",\"roles\":\"USER\"}"))
+                        .content("{\"amount\":\"500\"}"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/transactions/deposit")
+                        .with(testUser("admin", "ADMIN"))
+                        .with(SecurityMockMvcRequestPostProcessors.csrf())
+                        .contentType("application/json")
+                        .content("{\"amount\":\"500\"}"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
-    public void testAccountHolderDelete() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/accounts/atif")
-                        .with(testUser("user", "USER"))
-                        .with(SecurityMockMvcRequestPostProcessors.csrf()))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
-
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/accounts/admin")
-                        .with(testUser("admin", "ADMIN"))
-                .with(SecurityMockMvcRequestPostProcessors.csrf()))
+    public void testTransactionTransfer() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/transactions/transfer?receiver=user")
+                        .with(testUser("atif", "USER"))
+                        .with(SecurityMockMvcRequestPostProcessors.csrf())
+                        .contentType("application/json")
+                        .content("{\"amount\":\"50\"}"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/transactions/transfer?receiver=user")
+                        .with(testUser("admin", "ADMIN"))
+                        .with(SecurityMockMvcRequestPostProcessors.csrf())
+                        .contentType("application/json")
+                        .content("{\"amount\":\"50\"}"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
+    @Test
+    public void testTransactionWithdraw() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/transactions/withdraw")
+                        .with(testUser("atif", "USER"))
+                        .with(SecurityMockMvcRequestPostProcessors.csrf())
+                        .contentType("application/json")
+                        .content("{\"amount\":\"50\"}"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/transactions/withdraw")
+                        .with(testUser("admin", "ADMIN"))
+                        .with(SecurityMockMvcRequestPostProcessors.csrf())
+                        .contentType("application/json")
+                        .content("{\"amount\":\"50\"}"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
+    }
 
     private RequestPostProcessor testUser(String userName, String authoriy) {
         return SecurityMockMvcRequestPostProcessors.user(userName).authorities(new SimpleGrantedAuthority(authoriy));
     }
 }
+
