@@ -15,7 +15,7 @@ function App() {
 
     const fetchUserRoles = async () => {
       try {
-        const response = await axios.get('http://localhost:9080/api/v1/accounts/getRoles', {
+        const response = await axios.get('/api/v1/accounts/getRoles', {
           withCredentials: true,
           headers: {
             'Authorization': 'Basic ' + btoa('admin:admin'),

@@ -7,7 +7,7 @@ const TransactionHistory = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:9080/api/v1/transactions/history`, {
+        const response = await axios.get(`/api/v1/transactions/history`, {
           withCredentials: true,
           headers: {
             'Authorization': 'Basic ' + btoa('admin:admin'),

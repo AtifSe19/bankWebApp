@@ -16,13 +16,13 @@ const UserHomePage = () => {
     const fetchData = async () => {
       try {
         const [balanceResponse, usernameResponse] = await Promise.all([
-          axios.get(`http://localhost:9080/api/v1/balance`, {
+          axios.get(`/api/v1/balance`, {
             withCredentials: true,
             headers: {
               'Authorization': 'Basic ' + btoa('admin:admin'),
             },
           }),
-          axios.get(`http://localhost:9080/api/v1/accounts/getUsername`, {
+          axios.get(`/api/v1/accounts/getUsername`, {
             withCredentials: true,
             headers: {
               'Authorization': 'Basic ' + btoa('admin:admin'),

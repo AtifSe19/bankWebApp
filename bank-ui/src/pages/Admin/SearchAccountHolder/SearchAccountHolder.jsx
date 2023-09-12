@@ -10,7 +10,7 @@ const SearchAccountHolder = () => {
   // Function to fetch accounts from the backend
   const fetchAccounts = async () => {
     try {
-      const response = await axios.get('http://localhost:9080/api/v1/accounts', {
+      const response = await axios.get('/api/v1/accounts', {
         withCredentials: true,
         headers: {
           'Authorization': 'Basic ' + btoa('admin:admin'),

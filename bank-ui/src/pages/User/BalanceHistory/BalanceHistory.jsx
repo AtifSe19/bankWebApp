@@ -6,7 +6,7 @@ const BalanceHistory = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:9080/api/v1/balance/history`, {
+        const response = await axios.get(`/api/v1/balance/history`, {
           withCredentials: true,
           headers: {
             'Authorization': 'Basic ' + btoa('admin:admin'),

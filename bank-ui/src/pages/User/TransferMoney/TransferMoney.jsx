@@ -13,7 +13,7 @@ const TransferMoney = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:9080/api/v1/transactions/transfer?receiver=${receiver}`,
+        `/api/v1/transactions/transfer?receiver=${receiver}`,
         { amount },
         {
           withCredentials: true,

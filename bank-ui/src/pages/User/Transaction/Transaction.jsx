@@ -14,8 +14,8 @@ const TransactionForm = () => {
     // Define the API endpoint based on the selected transaction type
     const apiUrl =
       transactionType === 'deposit'
-        ? 'http://localhost:9080/api/v1/transactions/deposit'
-        : 'http://localhost:9080/api/v1/transactions/withdraw';
+        ? '/api/v1/transactions/deposit'
+        : '/api/v1/transactions/withdraw';
 
     try {
       const response = await axios.post(

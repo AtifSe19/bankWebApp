@@ -30,7 +30,7 @@ const AddAccountHolder = () => {
         roles: formData.roles.toUpperCase(),
       };
   
-      const response = await axios.post('http://localhost:9080/api/v1/accounts', dataToSend, {
+      const response = await axios.post('/api/v1/accounts', dataToSend, {
         withCredentials: true,
         headers: {
           'Authorization': 'Basic ' + btoa('admin:admin'),
