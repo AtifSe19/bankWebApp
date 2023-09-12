@@ -81,7 +81,7 @@ const Navbar = ({ user }) => {
                         </ul>
 
                         {/* <li className="nav-item"> */}
-                            <a className="nav-link customBtns" href="/login?logout " id='logout'>
+                            <a className="nav-link customBtns" href="/logout " id='logout'>
                                 Logout
                             </a>
                         {/* </li> */}
