@@ -40,13 +40,6 @@ function App() {
 
   return (
     <Router>
-      {/* <Navbar user={user} />
-      {user && user.role === 'admin' ? (
-        <AdminPanel />
-      ) : (
-        <UserPanel />
-      )} */}
-
       <Navbar user={user} />
       {user && user.role === 'admin' && (
         <AdminPanel />

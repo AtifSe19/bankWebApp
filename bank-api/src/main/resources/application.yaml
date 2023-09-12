@@ -1,10 +1,6 @@
 spring:
   application:
     name: bankWebApp
-  security:
-    user:
-      name: ${bankWebApp.security.user.name:}
-      password: ${bankWebApp.security.user.password:}
   profiles:
     include:
 #      - prod
