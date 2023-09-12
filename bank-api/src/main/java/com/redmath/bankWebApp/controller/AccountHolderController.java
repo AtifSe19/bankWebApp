@@ -39,7 +39,7 @@ public class AccountHolderController {
     public List<AccountHolder> viewAccounts(){
         return accountHolderService.getAllAccountHolders();
     }
-    @GetMapping("/{username}")
+    @GetMapping("/search/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<AccountHolder> getAccountHolderByUsername(@PathVariable String username){
         return accountHolderService.getAccountHolderByUsername(username);

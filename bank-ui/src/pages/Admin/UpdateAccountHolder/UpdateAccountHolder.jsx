@@ -21,7 +21,7 @@ const UpdateAccountHolder = () => {
   const handleSearch = async () => {
     try {
       // Send a request to search for the account holder by username
-      const response = await axios.get(`/api/v1/accounts/${username}`, {
+      const response = await axios.get(`/api/v1/accounts/search/${username}`, {
         withCredentials: true,
         headers: {
           'Authorization': 'Basic ' + btoa('admin:admin'),
