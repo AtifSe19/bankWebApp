@@ -54,7 +54,10 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring().requestMatchers(
                 new AntPathRequestMatcher("/h2-console/**", "GET"),
-                new AntPathRequestMatcher("/h2-console/**", "POST")
+                new AntPathRequestMatcher("/h2-console/**", "POST"),
+                new AntPathRequestMatcher("/actuator/**", "GET"),
+                new AntPathRequestMatcher("/actuator/**", "POST")
+
         );
     }
 
@@ -81,6 +84,7 @@ public class SecurityConfig {
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .subject(auth.getName())
                 .id(UUID.randomUUID().toString())
+                .issuedAt(LocalDateTime.now().toInstant(ZoneOffset.UTC))
                 .expiresAt(LocalDateTime.now().plusSeconds(sessionExpirySeconds).toInstant(ZoneOffset.UTC))
                 .build();
         Jwt jwt = jwtEncoder.encode(JwtEncoderParameters.from(header, claims));
@@ -123,3 +127,4 @@ public class SecurityConfig {
     }
 
 }
+
