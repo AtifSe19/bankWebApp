@@ -9,11 +9,23 @@
 }
 
 .customBtns{
-    border: 1px solid red;
     padding: 6px 10px;
     border-radius: 5px;
+    border: none;
+    color: white;
+    margin: 0 5px;
+    border: 1px solid black;
 }
 
 nav{
     background-color: #008080;
+}
+
+#logout{
+    background-color: red;
+}
+
+#login{
+    background-color: green;
+    color: white;
 }
