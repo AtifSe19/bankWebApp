@@ -54,9 +54,7 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring().requestMatchers(
                 new AntPathRequestMatcher("/h2-console/**", "GET"),
-                new AntPathRequestMatcher("/h2-console/**", "POST"),
-                new AntPathRequestMatcher("/actuator/**", "GET"),
-                new AntPathRequestMatcher("/actuator/**", "POST")
+                new AntPathRequestMatcher("/h2-console/**", "POST")
 
         );
     }

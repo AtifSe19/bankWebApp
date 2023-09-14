@@ -6,3 +6,5 @@ bankWebApp:
 
   liquibase:
     contexts: prod
+
+
