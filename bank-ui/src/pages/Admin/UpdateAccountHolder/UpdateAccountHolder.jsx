@@ -128,6 +128,7 @@ const UpdateAccountHolder = () => {
                 name="email"
                 value={accountHolder.email}
                 onChange={(e) => setAccountHolder({ ...accountHolder, email: e.target.value })}
+                required
               />
             </div>
             <div className="mb-3">
@@ -150,6 +151,7 @@ const UpdateAccountHolder = () => {
                 rows="3"
                 value={accountHolder.address}
                 onChange={(e) => setAccountHolder({ ...accountHolder, address: e.target.value })}
+                required
               ></textarea>
             </div>
             <button type="submit" className="btn btn-primary btns">Update</button>

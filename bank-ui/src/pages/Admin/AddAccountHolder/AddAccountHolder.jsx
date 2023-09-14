@@ -5,11 +5,11 @@ import './AddAccountHolder.css';
 
 const AddAccountHolder = () => {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: null,
+    email: null,
+    password: null,
     roles: 'USER', // Default role is 'user'
-    address: '',
+    address: null,
   });
 
 
@@ -68,6 +68,7 @@ const AddAccountHolder = () => {
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-3">
@@ -79,6 +80,7 @@ const AddAccountHolder = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-3">
@@ -90,6 +92,7 @@ const AddAccountHolder = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="form-check">
@@ -128,6 +131,7 @@ const AddAccountHolder = () => {
                 rows="3"
                 value={formData.address}
                 onChange={handleChange}
+                required
               ></textarea>
             </div>
             <button id='addBtn' type="submit" className="btn btn-primary">Add</button>

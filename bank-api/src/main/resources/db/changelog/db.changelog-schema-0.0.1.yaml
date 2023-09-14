@@ -41,4 +41,3 @@ databaseChangeLog:
             columns:
               - column:
                   name: username
-

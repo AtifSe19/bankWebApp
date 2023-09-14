@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -82,7 +83,7 @@ public class AccountHolderService implements UserDetailsService {
 
     public ResponseEntity<AccountHolder> getAccountHolderByUsername(String name) {
         Optional<AccountHolder> foundUser = accountHolderRepo.getAccountHolderByUsername(name);
-        return foundUser.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().body(null));
+        return foundUser.map(ResponseEntity::ok).orElse(null);
     }
 
     public ResponseEntity<Boolean> deleteAccountHolderByUsername(String username) {
