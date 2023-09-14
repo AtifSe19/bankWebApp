@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/balance")
+@RequestMapping("/api/v1/balances")
 @CrossOrigin("https://localhost:3000")
 public class BalanceController {
     private final BalanceService balanceService;
