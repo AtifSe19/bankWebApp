@@ -1,4 +1,4 @@
-package com.redmath.bankWebApp.model;
+package com.redmath.bankWebApp.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

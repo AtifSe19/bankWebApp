@@ -52,7 +52,6 @@ const Navbar = ({ user }) => {
                                     </li>
                                 </>
                             )}
-
                             {/* Move this part within a list item */}
                             {user && user.role === 'user' && (
                                 <>
@@ -81,9 +80,9 @@ const Navbar = ({ user }) => {
                         </ul>
 
                         {/* <li className="nav-item"> */}
-                            <a className="nav-link customBtns" href="/logout " id='logout'>
-                                Logout
-                            </a>
+                        <a className="nav-link customBtns" href="/logout " id='logout'>
+                            Logout
+                        </a>
                         {/* </li> */}
                     </div>
                 </div>

@@ -1,8 +1,7 @@
-package com.redmath.bankWebApp.controller;
+package com.redmath.bankWebApp.controllers;
 
-import com.redmath.bankWebApp.model.AccountHolder;
-import com.redmath.bankWebApp.service.AccountHolderService;
-import lombok.NonNull;
+import com.redmath.bankWebApp.models.AccountHolder;
+import com.redmath.bankWebApp.services.AccountHolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

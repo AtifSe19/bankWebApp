@@ -1,7 +1,7 @@
-package com.redmath.bankWebApp.service;
+package com.redmath.bankWebApp.services;
 
-import com.redmath.bankWebApp.model.AccountHolder;
-import com.redmath.bankWebApp.repo.AccountHolderRepo;
+import com.redmath.bankWebApp.models.AccountHolder;
+import com.redmath.bankWebApp.repos.AccountHolderRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -65,7 +65,11 @@ public class AccountHolderService implements UserDetailsService {
 
     public AccountHolder updateAccountHolder(String username, AccountHolder accountHolder) {
         AccountHolder foundUser = accountHolderRepo.findByUsername(username).orElse(null);
-
+        if(foundUser == null){
+            System.out.println("I am here");
+            throw new UsernameNotFoundException(username + "not found");
+        }
+        System.out.println(foundUser.getUsername());
         foundUser.setEmail(accountHolder.getEmail());
         foundUser.setAddress(accountHolder.getAddress());
 
@@ -83,7 +87,9 @@ public class AccountHolderService implements UserDetailsService {
 
     public ResponseEntity<AccountHolder> getAccountHolderByUsername(String name) {
         Optional<AccountHolder> foundUser = accountHolderRepo.getAccountHolderByUsername(name);
-        return foundUser.map(ResponseEntity::ok).orElse(null);
+        if(foundUser.isEmpty())
+            throw new NoSuchElementException(name + "not found");
+        return ResponseEntity.ok(foundUser.get());
     }
 
     public ResponseEntity<Boolean> deleteAccountHolderByUsername(String username) {
@@ -93,6 +99,6 @@ public class AccountHolderService implements UserDetailsService {
             accountHolderRepo.deleteById(foundUser.getId());
             return ResponseEntity.ok(true);
         }
-        return ResponseEntity.badRequest().body(false);
+        throw new NoSuchElementException(username + "not found");
     }
 }

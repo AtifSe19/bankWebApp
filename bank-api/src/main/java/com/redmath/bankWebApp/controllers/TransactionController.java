@@ -1,8 +1,8 @@
-package com.redmath.bankWebApp.controller;
+package com.redmath.bankWebApp.controllers;
 
-import com.redmath.bankWebApp.model.Balance;
-import com.redmath.bankWebApp.model.Transaction;
-import com.redmath.bankWebApp.service.TransactionService;
+import com.redmath.bankWebApp.models.Balance;
+import com.redmath.bankWebApp.models.Transaction;
+import com.redmath.bankWebApp.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;

@@ -1,7 +1,7 @@
-package com.redmath.bankWebApp.config;
+package com.redmath.bankWebApp.configs;
 
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
-import com.redmath.bankWebApp.service.AccountHolderService;
+import com.redmath.bankWebApp.services.AccountHolderService;
 import jakarta.servlet.http.Cookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -55,7 +55,6 @@ public class SecurityConfig {
         return web -> web.ignoring().requestMatchers(
                 new AntPathRequestMatcher("/h2-console/**", "GET"),
                 new AntPathRequestMatcher("/h2-console/**", "POST")
-
         );
     }
 

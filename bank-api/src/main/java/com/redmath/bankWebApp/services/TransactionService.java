@@ -1,16 +1,17 @@
-package com.redmath.bankWebApp.service;
+package com.redmath.bankWebApp.services;
 
-import com.redmath.bankWebApp.model.AccountHolder;
-import com.redmath.bankWebApp.model.Balance;
-import com.redmath.bankWebApp.model.Transaction;
-import com.redmath.bankWebApp.repo.AccountHolderRepo;
-import com.redmath.bankWebApp.repo.TransactionRepo;
+import com.redmath.bankWebApp.models.AccountHolder;
+import com.redmath.bankWebApp.models.Balance;
+import com.redmath.bankWebApp.models.Transaction;
+import com.redmath.bankWebApp.repos.AccountHolderRepo;
+import com.redmath.bankWebApp.repos.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class TransactionService {
@@ -59,7 +60,7 @@ public class TransactionService {
 
     private void validateTransaction(Balance foundAccLatestBalRec, Long amount, String transType, Boolean toUpdate){
         if(!isTransactionValid(foundAccLatestBalRec.getAmount(), amount, transType)){
-            throw new IllegalStateException("Insufficient funds");
+            throw new IllegalStateException("Invalid transaction");
         }
 
         if(toUpdate)
@@ -95,7 +96,7 @@ public class TransactionService {
     public void transferCash(String sender, String receiver, Balance balance) {
         AccountHolder receiverAcc = accountHolderRepo.getAccountHolderByUsername(receiver).orElse(null);
         if(receiverAcc == null || receiverAcc.getRoles().equals("ADMIN"))
-            throw new IllegalStateException("Can not transfer money");
+            throw new NoSuchElementException("User not found");
         handleTransaction(sender, balance, "DB", "You" + " transferred $" + balance.getAmount() + " to @_" + receiver);
         handleTransaction(receiver, balance, "CR", "$" + balance.getAmount() + " was transferred to you by @_" + sender);
     }

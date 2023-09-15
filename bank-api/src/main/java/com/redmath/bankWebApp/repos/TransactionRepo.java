@@ -1,6 +1,6 @@
-package com.redmath.bankWebApp.repo;
+package com.redmath.bankWebApp.repos;
 
-import com.redmath.bankWebApp.model.Transaction;
+import com.redmath.bankWebApp.models.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

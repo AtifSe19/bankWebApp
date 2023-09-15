@@ -1,8 +1,8 @@
-package com.redmath.bankWebApp.service;
+package com.redmath.bankWebApp.services;
 
-import com.redmath.bankWebApp.model.AccountHolder;
-import com.redmath.bankWebApp.model.Balance;
-import com.redmath.bankWebApp.repo.BalanceRepo;
+import com.redmath.bankWebApp.models.AccountHolder;
+import com.redmath.bankWebApp.models.Balance;
+import com.redmath.bankWebApp.repos.BalanceRepo;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package com.redmath.bankWebApp.repo;
+package com.redmath.bankWebApp.repos;
 
-import com.redmath.bankWebApp.model.AccountHolder;
+import com.redmath.bankWebApp.models.AccountHolder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
