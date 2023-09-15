@@ -97,12 +97,18 @@
 			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
 
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>7.13.0</version>
+		</dependency>
+
 <!--		dependency for distributed tracing-->
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-tracing-bridge-brave</artifactId>
 		</dependency>
-
 	</dependencies>
 
 	<build>
