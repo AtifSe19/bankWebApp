@@ -84,8 +84,6 @@ const UpdateAccountHolder = () => {
             <button className="btn btn-primary mt-2" onClick={handleSearch}>Search</button>
           </div>
           <form onSubmit={handleSubmit}>
-            {/* Render form fields here based on the found account holder data */}
-            {/* Include 'id', 'username', and 'roles' as disabled fields */}
             <div className="mb-3">
               <label htmlFor="id" className="form-label">ID</label>
               <input

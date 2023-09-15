@@ -11,7 +11,7 @@ const DeleteAccountHolder = () => {
   };
 
   const handleDelete = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       // Send a DELETE request to delete the account holder by username
       const response = await axios.delete(`/api/v1/accounts/${username}`);
