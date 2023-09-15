@@ -40,11 +40,14 @@ function App() {
 
   return (
     <Router>
+      {/* <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes> */}
       <Navbar user={user} />
       {user && user.role === 'admin' && (
         <AdminPanel />
-      )}  
-      {user && user.role === 'user' &&(
+      )}
+      {user && user.role === 'user' && (
         <UserPanel />
       )}
     </Router>

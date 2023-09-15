@@ -1,5 +1,6 @@
 package com.redmath.bankWebApp.services;
 
+import com.redmath.bankWebApp.basic.ApiResponse;
 import com.redmath.bankWebApp.models.AccountHolder;
 import com.redmath.bankWebApp.repos.AccountHolderRepo;
 
@@ -85,19 +86,19 @@ public class AccountHolderService implements UserDetailsService {
         return accountHolderRepo.getRolesByUsername(username);
     }
 
-    public ResponseEntity<AccountHolder> getAccountHolderByUsername(String name) {
+    public ResponseEntity<ApiResponse<AccountHolder>> getAccountHolderByUsername(String name) {
         Optional<AccountHolder> foundUser = accountHolderRepo.getAccountHolderByUsername(name);
         if(foundUser.isEmpty())
             throw new NoSuchElementException(name + "not found");
-        return ResponseEntity.ok(foundUser.get());
+        return ResponseEntity.ok(ApiResponse.of(foundUser.get()));
     }
 
-    public ResponseEntity<Boolean> deleteAccountHolderByUsername(String username) {
+    public ResponseEntity<ApiResponse<Boolean>> deleteAccountHolderByUsername(String username) {
 
         AccountHolder foundUser = accountHolderRepo.findByUsername(username).orElse(null);
         if(foundUser != null){
             accountHolderRepo.deleteById(foundUser.getId());
-            return ResponseEntity.ok(true);
+            return ResponseEntity.ok(ApiResponse.of(true));
         }
         throw new NoSuchElementException(username + "not found");
     }

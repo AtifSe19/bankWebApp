@@ -1,5 +1,6 @@
 package com.redmath.bankWebApp.controllers;
 
+import com.redmath.bankWebApp.basic.ApiResponse;
 import com.redmath.bankWebApp.models.AccountHolder;
 import com.redmath.bankWebApp.services.AccountHolderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class AccountHolderController {
     }
     @DeleteMapping("/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Boolean> deleteAccountHolder(@PathVariable String username){
+    public ResponseEntity<ApiResponse<Boolean>> deleteAccountHolder(@PathVariable String username){
         return accountHolderService.deleteAccountHolderByUsername(username);
     }
     @PutMapping("/{username}")
@@ -41,7 +42,7 @@ public class AccountHolderController {
     }
     @GetMapping("/search/{username}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<AccountHolder> getAccountHolderByUsername(@PathVariable String username){
+    public ResponseEntity<ApiResponse<AccountHolder>> getAccountHolderByUsername(@PathVariable String username){
         return accountHolderService.getAccountHolderByUsername(username);
     }
     @GetMapping("/getRoles")

@@ -60,7 +60,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http.formLogin(formLogin -> formLogin.defaultSuccessUrl("http://localhost:3000", true).permitAll());
         http.formLogin(config -> config.successHandler(authenticationSuccessHandler()));
         http.csrf(config -> config.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()));
@@ -74,7 +73,7 @@ public class SecurityConfig {
     private AuthenticationSuccessHandler authenticationSuccessHandler() {
         return (request, response, auth) -> {
             response.addCookie(createSessionCookie(encode(auth)));
-            response.sendRedirect("http://localhost:3000");
+            response.sendRedirect("http://localhost:3000/");
         };
     }
 

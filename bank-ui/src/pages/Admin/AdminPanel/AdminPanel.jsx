@@ -6,7 +6,7 @@ import UpdateAccountHolder from '../UpdateAccountHolder/UpdateAccountHolder';
 import SearchAccountHolder from '../SearchAccountHolder/SearchAccountHolder';
 import AdminHomePage from '../AdminHomePage/AdminHomePage';
 import Logout from '../../../components/Logout/Logout';
-import Login from '../../../components/Login/Login';
+// import Login from '../../Login/Login';
 const AdminPanel = () => {
     return (
         <Routes>

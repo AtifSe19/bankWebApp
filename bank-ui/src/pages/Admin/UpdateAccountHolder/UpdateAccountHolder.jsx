@@ -29,7 +29,7 @@ const UpdateAccountHolder = () => {
       });
 
       if (response.status === 200) {
-        setAccountHolder(response.data);
+        setAccountHolder(response.data.content);
         toast.success(`Account holder: @_${username} information retrieved successfully`)
       } else {
         // Handle account holder not found

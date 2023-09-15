@@ -21,7 +21,7 @@ function Login() {
 
         if (response.ok) {
             console.log("Successful login")
-            navigate.push("/");
+            navigate("/");
 
         } else {
             // Handle login failure
@@ -48,6 +48,8 @@ function Login() {
                                         placeholder="Username"
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
+                                        id = "username"
+                                        className="form__input"
                                     />
                                 </div>
                                 <div className="row">

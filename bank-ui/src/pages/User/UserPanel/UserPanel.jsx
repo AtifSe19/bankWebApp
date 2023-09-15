@@ -6,7 +6,7 @@ import TransactionHistory from '../TransactionHistory/TransactionHistory';
 import UserHomePage from '../UserHomePage/UserHomePage';
 import Transaction from '../Transaction/Transaction';
 import Logout from '../../../components/Logout/Logout';
-import Login from '../../../components/Login/Login';
+// import Login from '../../Login/Login';
 
 const UserPanel = () => {
     return (

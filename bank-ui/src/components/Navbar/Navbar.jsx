@@ -80,6 +80,7 @@ const Navbar = ({ user }) => {
                         </ul>
 
                         {/* <li className="nav-item"> */}
+                        {/* <Link className='nav-link customBtns' to="/login" id='login'>Login</Link> */}
                         <a className="nav-link customBtns" href="/logout " id='logout'>
                             Logout
                         </a>
