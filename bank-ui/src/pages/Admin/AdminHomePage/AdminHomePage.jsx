@@ -16,17 +16,10 @@ const AdminHomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [usernameResponse] = await Promise.all([
-          axios.get(`/api/v1/accounts/getUsername`, {
-            withCredentials: true,
-            headers: {
-              'Authorization': 'Basic ' + btoa('admin:admin'),
-            },
-          }),
-        ]);
+        const usernameResponse = await axios.get(`/api/v1/accounts/getUsername`);
 
         if (usernameResponse.status === 200) {
-          const username = usernameResponse.data; // Set username as-is
+          const username = usernameResponse.data; 
           setUsername(username);
         } else {
           console.error('Failed to fetch username');

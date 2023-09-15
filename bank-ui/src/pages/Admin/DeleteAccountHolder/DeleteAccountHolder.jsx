@@ -14,12 +14,7 @@ const DeleteAccountHolder = () => {
     e.preventDefault();
     try {
       // Send a DELETE request to delete the account holder by username
-      const response = await axios.delete(`/api/v1/accounts/${username}`, {
-        withCredentials: true,
-        headers: {
-          'Authorization': 'Basic ' + btoa('admin:admin'),
-        },
-      });
+      const response = await axios.delete(`/api/v1/accounts/${username}`);
 
       if (response.status === 200) {
         toast.success(`Account holder @_${username} deleted successfully`);

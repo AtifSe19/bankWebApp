@@ -6,12 +6,7 @@ const BalanceHistory = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/v1/balances/history`, {
-          withCredentials: true,
-          headers: {
-            'Authorization': 'Basic ' + btoa('admin:admin'),
-          },
-        });
+        const response = await axios.get(`/api/v1/balances/history`);
 
         if (response.status === 200) {
           // Map the response data and format the date

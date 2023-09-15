@@ -21,13 +21,6 @@ const TransactionForm = () => {
       const response = await axios.post(
         apiUrl,
         { amount },
-        {
-          withCredentials: true,
-          headers: {
-            'Authorization': 'Basic ' + btoa('admin:admin'),
-            'Content-Type': 'application/json',
-          },
-        }
       );
 
       if (response.status === 200) {

@@ -30,12 +30,7 @@ const AddAccountHolder = () => {
         roles: formData.roles.toUpperCase(),
       };
   
-      const response = await axios.post('/api/v1/accounts', dataToSend, {
-        withCredentials: true,
-        headers: {
-          'Authorization': 'Basic ' + btoa('admin:admin'),
-        },
-      });
+      const response = await axios.post('/api/v1/accounts', dataToSend);
   
       if (response.status === 200) {
         // Handle successful submission, e.g., show a success message or redirect

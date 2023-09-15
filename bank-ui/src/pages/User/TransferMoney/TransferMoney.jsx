@@ -15,13 +15,13 @@ const TransferMoney = () => {
       const response = await axios.post(
         `/api/v1/transactions/transfer?receiver=${receiver}`,
         { amount },
-        {
-          withCredentials: true,
-          headers: {
-            'Authorization': 'Basic ' + btoa('admin:admin'),
-            'Content-Type': 'application/json',
-          },
-        }
+        // {
+        //   withCredentials: true,
+        //   headers: {
+        //     'Authorization': 'Basic ' + btoa('admin:admin'),
+        //     'Content-Type': 'application/json',
+        //   },
+        // }
       );
 
       if (response.status === 200) {

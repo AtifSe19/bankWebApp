@@ -16,18 +16,8 @@ const UserHomePage = () => {
     const fetchData = async () => {
       try {
         const [balanceResponse, usernameResponse] = await Promise.all([
-          axios.get(`/api/v1/balances`, {
-            withCredentials: true,
-            headers: {
-              'Authorization': 'Basic ' + btoa('admin:admin'),
-            },
-          }),
-          axios.get(`/api/v1/accounts/getUsername`, {
-            withCredentials: true,
-            headers: {
-              'Authorization': 'Basic ' + btoa('admin:admin'),
-            },
-          }),
+          axios.get(`/api/v1/balances`),
+          axios.get(`/api/v1/accounts/getUsername`),
         ]);
 
         if (balanceResponse.status === 200) {

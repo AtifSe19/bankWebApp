@@ -12,12 +12,7 @@ function Login() {
         e.preventDefault();
 
         // Send a POST request to the Spring Boot backend with username and password
-        const response = axios.post('/login', {
-            withCredentials: true,
-            headers: {
-              'Authorization': 'Basic ' + btoa('admin:admin'),
-            },
-        });
+        const response = axios.post('/login');
 
         if (response.ok) {
             console.log("Successful login")
